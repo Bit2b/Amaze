@@ -1,5 +1,4 @@
 // utils/shuffle.ts
-
 import { CellEdge } from '@/types';
 
 export function shuffle(array: CellEdge[]) {
