@@ -1,5 +1,5 @@
 import DisjointSetUnion from '@/utils/dsu';
-import { CellEdge, GenerationResult} from '@/types';
+import { CellEdge, MazeResult } from '@/types';
 import { removeEdge } from '@/utils/wallUtil';
 import { shuffle } from '@/utils/shuffle';
 import { createFullGrid, createAllEdges } from '@/utils/gridUtils';
@@ -7,7 +7,7 @@ import { createFullGrid, createAllEdges } from '@/utils/gridUtils';
 export default function kruskalsAlgorithm(
   height: number,
   width: number
-): GenerationResult {
+): MazeResult {
   const dsu = new DisjointSetUnion(height, width);
   const maze = createFullGrid(height, width);
   const wallChanges: CellEdge[] = [];

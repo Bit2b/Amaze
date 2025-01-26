@@ -1,16 +1,18 @@
-import { Cell, CellEdge, GenerationResult } from '@/types';
+import { Cell, CellEdge, MazeResult } from '@/types';
 import { createFullGrid, isInsideGrid } from '@/utils/gridUtils';
 import { removeEdge } from '@/utils/wallUtil';
 
 export default function recursiveBacktracker(
   height: number,
   width: number
-): GenerationResult {
+): MazeResult {
   const maze = createFullGrid(height, width);
   const wallChanges: CellEdge[] = [];
-  const isConstructive=false;
+  const isConstructive = false;
   const stack: Cell[] = [{ x: 0, y: 0 }];
-  const visited = Array.from({ length: height }, () => Array(width).fill(false));
+  const visited = Array.from({ length: height }, () =>
+    Array(width).fill(false)
+  );
 
   visited[0][0] = true;
 
@@ -19,13 +21,20 @@ export default function recursiveBacktracker(
 
   while (stack.length > 0) {
     const currentCell = stack.pop()!;
-    const unvisitedNeighbors = getUnvisitedNeighbors(currentCell, visited, height, width, dx, dy);
+    const unvisitedNeighbors = getUnvisitedNeighbors(
+      currentCell,
+      visited,
+      height,
+      width,
+      dx,
+      dy
+    );
 
     if (unvisitedNeighbors.length > 0) {
       const nextCell = chooseRandomNeighbor(unvisitedNeighbors);
       stack.push(currentCell);
       visited[nextCell.x][nextCell.y] = true;
-      
+
       const edge: CellEdge = { cellA: currentCell, cellB: nextCell };
       wallChanges.push(edge);
       removeEdge(maze, edge);
@@ -33,12 +42,19 @@ export default function recursiveBacktracker(
     }
   }
 
-  return { maze, wallChanges,isConstructive };
+  return { maze, wallChanges, isConstructive };
 }
 
-function getUnvisitedNeighbors(cell: Cell, visited: boolean[][], height: number, width: number, dx: number[], dy: number[]): Cell[] {
+function getUnvisitedNeighbors(
+  cell: Cell,
+  visited: boolean[][],
+  height: number,
+  width: number,
+  dx: number[],
+  dy: number[]
+): Cell[] {
   const neighbors: Cell[] = [];
-  
+
   for (let i = 0; i < 4; i++) {
     const nx = cell.x + dx[i];
     const ny = cell.y + dy[i];
@@ -47,7 +63,7 @@ function getUnvisitedNeighbors(cell: Cell, visited: boolean[][], height: number,
       neighbors.push({ x: nx, y: ny });
     }
   }
-  
+
   return neighbors;
 }
 

@@ -1,31 +1,39 @@
 import kruskalsAlgorithm from '@/algorithms/mazeGeneration/kruskalsAlgorithm';
 import { CellEdge } from '@/types';
-import { createFullGrid } from '@/utils/gridUtils';
-import { removeEdge } from '@/utils/wallUtil';
+import { createEmptyGrid, createFullGrid } from '@/utils/gridUtils';
+import { addEdge, removeEdge } from '@/utils/wallUtil';
 import React, { useEffect, useState } from 'react';
 import GridRenderer from './GridRenderer';
 import primsAlgorithm from '@/algorithms/mazeGeneration/primsAlgorithm';
 import recursiveBacktracker from '@/algorithms/mazeGeneration/recursiveBacktracker';
+import recursiveDivision from '@/algorithms/mazeGeneration/recursiveDivision';
 
 const Visualizer = () => {
     const [maze, setMaze] = useState<number[][]>(createFullGrid(10, 10));
     const [wallChanges, setWallChanges] = useState<CellEdge[]>([]);
+    const [isConstructive,setIsConstructive]=useState<Boolean>(false);
 
     useEffect(() => {
-        // const { wallChanges } = kruskalsAlgorithm(10, 10);
-        // const {wallChanges}=primsAlgorithm(10,10);
-        const {wallChanges}=recursiveBacktracker(10,10);
+        // const { wallChanges,isConstructive } = kruskalsAlgorithm(10, 10);
+        // const {wallChanges,isConstructive}=primsAlgorithm(10,10);
+        // const {wallChanges,isConstructive}=recursiveBacktracker(10,10);
+        const {wallChanges,isConstructive}=recursiveDivision(10,10);
         setWallChanges(wallChanges);
+        setIsConstructive(isConstructive);
     }, []);
 
     useEffect(() => {
         if (wallChanges.length === 0) return;
 
+        if(isConstructive)setMaze(createEmptyGrid(10,10));
         wallChanges.forEach((edge, index) => {
             setTimeout(() => {
                 setMaze(prevMaze => {
                     const newMaze = prevMaze.map(row => [...row]);
-                    removeEdge(newMaze, edge);
+                    if(isConstructive)
+                        addEdge(newMaze,edge);
+                    else
+                        removeEdge(newMaze, edge);
                     return newMaze;
                 });
             }, index * 100);

@@ -1,4 +1,3 @@
-
 export interface Cell {
   x: number;
   y: number;
@@ -9,8 +8,8 @@ export interface CellEdge {
   cellB: Cell;
 }
 
-export interface GenerationResult {
+export interface MazeResult {
   maze: number[][];
-  wallChanges: CellEdge[]; 
-  isConstructive: boolean; 
+  wallChanges: CellEdge[];
+  isConstructive: boolean;
 }
