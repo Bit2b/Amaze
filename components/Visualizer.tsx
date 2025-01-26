@@ -4,13 +4,17 @@ import { createFullGrid } from '@/utils/gridUtils';
 import { removeEdge } from '@/utils/wallUtil';
 import React, { useEffect, useState } from 'react';
 import GridRenderer from './GridRenderer';
+import primsAlgorithm from '@/algorithms/mazeGeneration/primsAlgorithm';
+import recursiveBacktracker from '@/algorithms/mazeGeneration/recursiveBacktracker';
 
 const Visualizer = () => {
     const [maze, setMaze] = useState<number[][]>(createFullGrid(10, 10));
     const [wallChanges, setWallChanges] = useState<CellEdge[]>([]);
 
     useEffect(() => {
-        const { wallChanges } = kruskalsAlgorithm(10, 10);
+        // const { wallChanges } = kruskalsAlgorithm(10, 10);
+        // const {wallChanges}=primsAlgorithm(10,10);
+        const {wallChanges}=recursiveBacktracker(10,10);
         setWallChanges(wallChanges);
     }, []);
 

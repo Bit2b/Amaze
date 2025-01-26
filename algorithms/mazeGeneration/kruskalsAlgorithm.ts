@@ -1,19 +1,13 @@
 import DisjointSetUnion from '@/utils/dsu';
-import { CellEdge } from '@/types';
+import { CellEdge, GenerationResult} from '@/types';
 import { removeEdge } from '@/utils/wallUtil';
 import { shuffle } from '@/utils/shuffle';
 import { createFullGrid, createAllEdges } from '@/utils/gridUtils';
 
-interface KruskalsResult {
-  maze: number[][];
-  wallChanges: CellEdge[];
-  isConstructive: boolean;
-}
-
 export default function kruskalsAlgorithm(
   height: number,
   width: number
-): KruskalsResult {
+): GenerationResult {
   const dsu = new DisjointSetUnion(height, width);
   const maze = createFullGrid(height, width);
   const wallChanges: CellEdge[] = [];

@@ -1,4 +1,16 @@
+
+export interface Cell {
+  x: number;
+  y: number;
+}
+
 export interface CellEdge {
-  cellA: { x: number; y: number };
-  cellB: { x: number; y: number };
+  cellA: Cell;
+  cellB: Cell;
+}
+
+export interface GenerationResult {
+  maze: number[][];
+  wallChanges: CellEdge[]; 
+  isConstructive: boolean; 
 }

@@ -16,10 +16,10 @@ const App: React.FC = () => {
   // }, []);
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen bg-secondary-2">
       {/* <GridRenderer grid={maze} /> */}
-      {/* <Visualizer /> */}
-      <Mazes/>
+      <Visualizer />
+      {/* <Mazes /> */}
     </div>
   );
 };
