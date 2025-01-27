@@ -10,7 +10,7 @@ export default function kruskalsAlgorithm(
 ): MazeResult {
   const dsu = new DisjointSetUnion(height, width);
   const maze = createFullGrid(height, width);
-  const wallChanges: CellEdge[] = [];
+  const mazeSteps: CellEdge[] = [];
   const isConstructive = false;
   const edges = createAllEdges(height, width);
   shuffle(edges);
@@ -19,9 +19,9 @@ export default function kruskalsAlgorithm(
     if (!dsu.isInSameSet(edge)) {
       dsu.unionSet(edge);
       removeEdge(maze, edge);
-      wallChanges.push(edge);
+      mazeSteps.push(edge);
     }
   });
 
-  return { maze, wallChanges, isConstructive };
+  return { maze, mazeSteps, isConstructive };
 }

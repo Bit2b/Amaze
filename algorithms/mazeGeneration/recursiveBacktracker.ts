@@ -7,7 +7,7 @@ export default function recursiveBacktracker(
   width: number
 ): MazeResult {
   const maze = createFullGrid(height, width);
-  const wallChanges: CellEdge[] = [];
+  const mazeSteps: CellEdge[] = [];
   const isConstructive = false;
   const stack: Cell[] = [{ x: 0, y: 0 }];
   const visited = Array.from({ length: height }, () =>
@@ -36,13 +36,13 @@ export default function recursiveBacktracker(
       visited[nextCell.x][nextCell.y] = true;
 
       const edge: CellEdge = { cellA: currentCell, cellB: nextCell };
-      wallChanges.push(edge);
+      mazeSteps.push(edge);
       removeEdge(maze, edge);
       stack.push(nextCell);
     }
   }
 
-  return { maze, wallChanges, isConstructive };
+  return { maze, mazeSteps, isConstructive };
 }
 
 function getUnvisitedNeighbors(

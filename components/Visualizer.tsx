@@ -10,28 +10,28 @@ import recursiveDivision from '@/algorithms/mazeGeneration/recursiveDivision';
 
 const Visualizer = () => {
     const [maze, setMaze] = useState<number[][]>(createFullGrid(10, 10));
-    const [wallChanges, setWallChanges] = useState<CellEdge[]>([]);
-    const [isConstructive,setIsConstructive]=useState<Boolean>(false);
+    const [mazeSteps, setmazeSteps] = useState<CellEdge[]>([]);
+    const [isConstructive, setIsConstructive] = useState<Boolean>(false);
 
     useEffect(() => {
-        // const { wallChanges,isConstructive } = kruskalsAlgorithm(10, 10);
-        // const {wallChanges,isConstructive}=primsAlgorithm(10,10);
-        // const {wallChanges,isConstructive}=recursiveBacktracker(10,10);
-        const {wallChanges,isConstructive}=recursiveDivision(10,10);
-        setWallChanges(wallChanges);
+        // const { mazeSteps,isConstructive } = kruskalsAlgorithm(10, 10);
+        // const {mazeSteps,isConstructive}=primsAlgorithm(10,10);
+        // const {mazeSteps,isConstructive}=recursiveBacktracker(10,10);
+        const { mazeSteps, isConstructive } = recursiveDivision(10, 10);
+        setmazeSteps(mazeSteps);
         setIsConstructive(isConstructive);
     }, []);
 
     useEffect(() => {
-        if (wallChanges.length === 0) return;
+        if (mazeSteps.length === 0) return;
 
-        if(isConstructive)setMaze(createEmptyGrid(10,10));
-        wallChanges.forEach((edge, index) => {
+        if (isConstructive) setMaze(createEmptyGrid(10, 10));
+        mazeSteps.forEach((edge, index) => {
             setTimeout(() => {
                 setMaze(prevMaze => {
                     const newMaze = prevMaze.map(row => [...row]);
-                    if(isConstructive)
-                        addEdge(newMaze,edge);
+                    if (isConstructive)
+                        addEdge(newMaze, edge);
                     else
                         removeEdge(newMaze, edge);
                     return newMaze;
@@ -39,7 +39,7 @@ const Visualizer = () => {
             }, index * 100);
         });
 
-    }, [wallChanges]);
+    }, [mazeSteps]);
 
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100">

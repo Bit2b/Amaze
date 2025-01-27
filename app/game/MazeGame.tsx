@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import GridRenderer from './GridRenderer';
+import GridRenderer from '@/components/GridRenderer';
 
 type GridProps = {
     grid: number[][];

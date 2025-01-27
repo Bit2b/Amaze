@@ -10,6 +10,14 @@ export interface CellEdge {
 
 export interface MazeResult {
   maze: number[][];
-  wallChanges: CellEdge[];
+  mazeSteps: CellEdge[];
   isConstructive: boolean;
+}
+
+export enum MazeAlgorithm {
+  RECURSIVE_BACKTRACKING = "Recursive Backtracking",
+  PRIM = "Prim's Algorithm",
+  KRUSKAL = "Kruskal's Algorithm",
+  RECURSIVE_DIVISION = 'Recursive Division',
+  RANDOM = 'Random',
 }

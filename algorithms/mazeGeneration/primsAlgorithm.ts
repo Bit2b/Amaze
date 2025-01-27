@@ -7,7 +7,7 @@ export default function primsAlgorithm(
   width: number
 ): MazeResult {
   const maze = createFullGrid(height, width);
-  const wallChanges: CellEdge[] = [];
+  const mazeSteps: CellEdge[] = [];
   const isConstructive = false;
 
   const edges: CellEdge[] = [
@@ -29,7 +29,7 @@ export default function primsAlgorithm(
 
     visited[cellB.x][cellB.y] = true;
 
-    wallChanges.push(edge);
+    mazeSteps.push(edge);
     removeEdge(maze, edge);
 
     const dx = [0, 0, 1, -1];
@@ -45,5 +45,5 @@ export default function primsAlgorithm(
     }
   }
 
-  return { maze, wallChanges, isConstructive };
+  return { maze, mazeSteps, isConstructive };
 }
