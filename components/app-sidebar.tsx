@@ -153,8 +153,8 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      name: "Settings",
+      url: "settings",
       icon: Frame,
     },
     {
