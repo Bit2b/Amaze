@@ -2,14 +2,14 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
+  Blocks,
   BookOpen,
   Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
+  Gamepad,
+  LayoutPanelTop,
   Map,
   PieChart,
+  Route,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
@@ -30,21 +30,27 @@ import { AlgorithmSwitcher } from "./sideBar/algo-switcher"
 const data = {
   modes: [
     {
+      name: "Home",
+      logo: LayoutPanelTop,
+      plan: "Switch it to play",
+      url: "/",
+    },
+    {
       name: "Game",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      logo: Gamepad,
+      plan: "Click on Grid To Play",
       url: "game",
     },
     {
       name: "Visualize",
-      logo: AudioWaveform,
-      plan: "Startup",
+      logo: Route,
+      plan: "Watch And Enjoy",
       url: "visualize",
     },
     {
       name: "Generate",
-      logo: Command,
-      plan: "Free",
+      logo: Blocks,
+      plan: "Observe",
       url: "generate",
     },
   ],
@@ -135,24 +141,14 @@ const data = {
     {
       name: "Settings",
       url: "settings",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
+      icon: Settings2,
     },
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarLogo/>
         <ModeSwitcher modes={data.modes} />

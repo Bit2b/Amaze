@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ChevronsUpDown } from "lucide-react";
-import Link from "next/link"; // Import Next.js Link
+import Link from "next/link"; 
 
 import {
   DropdownMenu,
@@ -26,14 +26,14 @@ export function ModeSwitcher({
     name: string;
     logo: React.ElementType;
     plan: string;
-    url: string; // URL property for navigation
+    url: string;
   }[];
 }) {
   const { isMobile } = useSidebar();
   const [activeMode, setActiveMode] = React.useState(modes[0]);
 
   const handleModeChange = (mode: typeof modes[number]) => {
-    setActiveMode(mode); // Update the active mode
+    setActiveMode(mode);
   };
 
   return (
@@ -45,7 +45,7 @@ export function ModeSwitcher({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-secondary">
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-black text-white">
                 <activeMode.logo className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -69,7 +69,7 @@ export function ModeSwitcher({
             {modes.map((mode) => (
               <DropdownMenuItem
                 key={mode.name}
-                onClick={() => handleModeChange(mode)} // Update active mode
+                onClick={() => handleModeChange(mode)}
                 className="gap-2 p-2 cursor-pointer"
               >
                 <Link href={mode.url} className="flex w-full items-center gap-2">

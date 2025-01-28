@@ -6,13 +6,14 @@ import React, { useEffect, useRef } from 'react';
 import GridRenderer from '@/components/GridRenderer';
 import { useResultStore } from '@/store/resultStore';
 import { useDimensionsStore } from '@/store/dimensionsStore';
-import MazeAlgorithmSeeder from '@/components/MazeAlgorithmSeeder';
+import Topbar from '@/components/Topbar';
 
 const Visualizer = () => {
   const { height, width } = useDimensionsStore();
   const { mazeSteps, isConstructive } = useResultStore(state => state.mazeResult);
   const [maze, setMaze] = React.useState<number[][]>(() => createFullGrid(height, width));
   const timeoutIds = useRef<NodeJS.Timeout[]>([]);
+  const {speed}=useDimensionsStore();
 
   useEffect(() => {
     // Clear any pending animations
@@ -30,7 +31,7 @@ const Visualizer = () => {
           isConstructive ? addEdge(newMaze, edge) : removeEdge(newMaze, edge);
           return newMaze;
         });
-      }, index * 100);
+      }, index * speed);
 
       timeoutIds.current.push(timeoutId);
     });
@@ -40,8 +41,8 @@ const Visualizer = () => {
   }, [mazeSteps, isConstructive]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <MazeAlgorithmSeeder />
+    <div className="flex flex-col">
+      <Topbar/>
       <GridRenderer grid={maze} />
     </div>
   );

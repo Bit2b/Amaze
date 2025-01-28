@@ -1,14 +1,14 @@
 'use client';
 
 import GridRenderer from "@/components/GridRenderer";
-import MazeAlgorithmSeeder from "@/components/MazeAlgorithmSeeder";
+import Topbar from "@/components/Topbar";
 import { useResultStore } from "@/store/resultStore";
 
 const App: React.FC = () => {
-  const maze = useResultStore((set)=>set.mazeResult.maze);
+  const maze = useResultStore((set) => set.mazeResult.maze);
   return (
     <div>
-      <MazeAlgorithmSeeder/>
+      <Topbar />
       <GridRenderer grid={maze} />
     </div>
   );

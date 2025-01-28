@@ -42,7 +42,7 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
     }, [location, grid]);
 
     return (
-        <div tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>
+        <div className='w-full' tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>
             <GridRenderer grid={maze} />
         </div>
     );

@@ -1,16 +1,16 @@
 'use client'
 
-import MazeAlgorithmSeeder from '@/components/MazeAlgorithmSeeder';
 import MazeGame from './MazeGame';
 import { useResultStore } from '@/store/resultStore';
+import Topbar from '@/components/Topbar';
 
 const Mazes = () => {
   
   const mazeGrid = useResultStore((set)=>set.mazeResult.maze);
   return (
     <div>
-      <MazeAlgorithmSeeder/>
-      <MazeGame grid={mazeGrid} />
+      <Topbar/>
+      <MazeGame grid={mazeGrid}/>
     </div>
   );
 }

@@ -1,21 +1,23 @@
-"use client";
-
 import { create } from 'zustand';
 
 interface DimensionsStore {
   height: number;
   width: number;
-  increaseHeight: () => void;
-  decreaseHeight: () => void;
-  increaseWidth: () => void;
-  decreaseWidth: () => void;
+  cellSize: number;
+  speed: number;
+  setHeight: (value:number) => void;
+  setWidth: (value:number) => void;
+  setCellSize: (value: number) => void;
+  setSpeed: (value: number) => void;
 }
 
 export const useDimensionsStore = create<DimensionsStore>((set) => ({
   height: 10,
   width: 10,
-  increaseHeight: () => set((state) => ({ height: Math.min(50,state.height + 1)})),
-  decreaseHeight: () => set((state) => ({ height: Math.max(1, state.height - 1)})),
-  increaseWidth: () => set((state) => ({ width: Math.min(50,state.width + 1) })),
-  decreaseWidth: () => set((state) => ({ width: Math.max(1, state.width - 1)})),
+  cellSize: 16,
+  speed: 100,
+  setHeight: (value) => set({ height: value }),
+  setWidth: (value) => set({ height: value }),
+  setCellSize: (value) => set({ cellSize: value }),
+  setSpeed: (value) => set({ speed: value }),
 }));
