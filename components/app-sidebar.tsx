@@ -48,26 +48,6 @@ const data = {
       url: "generate",
     },
   ],
-  algorithms: [
-    {
-      name: "Kruskals Algorithm",
-      logo: GalleryVerticalEnd,
-      plan: "Simple",
-      url: "game",
-    },
-    {
-      name: "Recursive Backtracking",
-      logo: AudioWaveform,
-      plan: "Simple",
-      url: "visualize",
-    },
-    {
-      name: "Recursive Division",
-      logo: Command,
-      plan: "Complex",
-      url: "generate",
-    },
-  ],
   navMain: [
     {
       title: "Algorithms",

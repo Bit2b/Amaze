@@ -1,7 +1,9 @@
 'use client';
 
+import { ThemeColorToggle } from "@/components/theme-color-toggle";
+import { ThemeModeToggle } from "@/components/theme-mode-toggle";
 import { useDimensionsStore } from "@/store/dimensionsStore";
-import { Plus, Minus } from "lucide-react"; // Import icons from lucide-react
+import { Plus, Minus } from "lucide-react"; 
 
 const App: React.FC = () => {
   const height = useDimensionsStore((state) => state.height);
@@ -13,6 +15,8 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-secondary-2 space-y-4">
+      <ThemeColorToggle/>
+      <ThemeModeToggle/>
       <div className="flex items-center space-x-4">
         <button
           onClick={decreaseWidth}
