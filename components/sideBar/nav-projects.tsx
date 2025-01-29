@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Settings2,
   type LucideIcon,
 } from "lucide-react"
 
@@ -13,15 +14,14 @@ import {
 } from "@/components/ui/sidebar"
 import Link from "next/link"
 
-export function NavProjects({
-  projects,
-}: {
-  projects: {
-    name: string
-    url: string
-    icon: LucideIcon
-  }[]
-}) {
+const projects = [
+  {
+    name: "Settings",
+    url: "settings",
+    icon: Settings2,
+  },
+]
+export function NavProjects() {
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">

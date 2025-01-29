@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { ChevronsUpDown } from "lucide-react";
-import Link from "next/link"; 
+import { Blocks, ChevronsUpDown, Gamepad, LayoutPanelTop, Route } from "lucide-react";
+import Link from "next/link";
 
 import {
   DropdownMenu,
@@ -19,16 +19,33 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export function ModeSwitcher({
-  modes,
-}: {
-  modes: {
-    name: string;
-    logo: React.ElementType;
-    plan: string;
-    url: string;
-  }[];
-}) {
+const modes = [
+  {
+    name: "Home",
+    logo: LayoutPanelTop,
+    plan: "Switch it to play",
+    url: "/",
+  },
+  {
+    name: "Game",
+    logo: Gamepad,
+    plan: "Click on Grid To Play",
+    url: "game",
+  },
+  {
+    name: "Visualize",
+    logo: Route,
+    plan: "Watch And Enjoy",
+    url: "visualize",
+  },
+  {
+    name: "Generate",
+    logo: Blocks,
+    plan: "Observe",
+    url: "generate",
+  },
+];
+export function ModeSwitcher() {
   const { isMobile } = useSidebar();
   const [activeMode, setActiveMode] = React.useState(modes[0]);
 

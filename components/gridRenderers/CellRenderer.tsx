@@ -12,7 +12,6 @@ const CellRenderer: React.FC<CellProps> = memo(({ value }) => {
   const left = value & 8 ? "border-l-2 border-primary" : "";
   const player = value & 16 ? "bg-chart-2" : "";
   let { cellSize } = useDimensionsStore();
-  cellSize = cellSize * 4;
 
   return (
     <div

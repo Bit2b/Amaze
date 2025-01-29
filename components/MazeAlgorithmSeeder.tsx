@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import kruskalsAlgorithm from '@/algorithms/mazeGeneration/kruskalsAlgorithm';
 import primsAlgorithm from '@/algorithms/mazeGeneration/primsAlgorithm';
 import recursiveBacktracker from '@/algorithms/mazeGeneration/recursiveBacktracker';
@@ -19,19 +19,19 @@ const MazeAlgorithmSeeder: React.FC = () => {
       case MazeAlgorithm.KRUSKAL:
         setMazeResult(kruskalsAlgorithm(height, width));
         break;
-        
+
       case MazeAlgorithm.PRIM:
         setMazeResult(primsAlgorithm(height, width));
         break;
-        
+
       case MazeAlgorithm.RECURSIVE_DIVISION:
         setMazeResult(recursiveDivision(height, width));
         break;
-        
+
       case MazeAlgorithm.RECURSIVE_BACKTRACKING:
         setMazeResult(recursiveBacktracker(height, width));
         break;
-        
+
       default:
         setMazeResult(kruskalsAlgorithm(height, width));  // Default algorithm
         break;

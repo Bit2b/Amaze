@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import RowRenderer from "./RowRenderer";
+import { useEffect, useRef } from "react";
 import { useGridStore } from "@/store/downloadStore";
+import RowRenderer from "./gridRenderers/RowRenderer";
 
 type GridProps = {
   grid: number[][];
