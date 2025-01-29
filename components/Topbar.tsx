@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Download, Play, Waypoints } from "lucide-react";
 import MazeAlgorithmSeeder from "./MazeAlgorithmSeeder";
+import { Downloader } from "./Downloader";
 
 const Topbar = () => {
   const [seederKey, setSeederKey] = useState(0);
@@ -30,14 +31,7 @@ const Topbar = () => {
           </span>
         </div>
 
-        <div className="relative group">
-          <button>
-            <Download className="h-6 w-6 text-primary" />
-          </button>
-          <span className="absolute left-1/2 -translate-x-1/2 top-8 opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground text-sm px-2 py-1 rounded-lg shadow-md transition-all duration-300">
-            Download
-          </span>
-        </div>
+        <Downloader/>
       </div>
 
       {/* Re-mount MazeAlgorithmSeeder every click */}

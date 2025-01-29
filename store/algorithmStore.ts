@@ -14,7 +14,7 @@ interface AlgorithmStore {
 // Creating a zustand store
 export const useAlgorithmStore = create<AlgorithmStore>((set) => ({
   // Initial state: current algorithm and list of algorithms
-  currentAlgorithm: MazeAlgorithm.KRUSKAL,
+  currentAlgorithm: MazeAlgorithm.RECURSIVE_BACKTRACKING,
   algorithms: Object.values(MazeAlgorithm), // Convert enum to array
 
   // Function to set the current algorithm

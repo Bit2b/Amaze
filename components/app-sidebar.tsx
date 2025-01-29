@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/sidebar"
 import { AlgorithmSwitcher } from "./sideBar/algo-switcher"
 
-// This is sample data.
 const data = {
   modes: [
     {

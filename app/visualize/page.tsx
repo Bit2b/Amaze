@@ -31,7 +31,7 @@ const Visualizer = () => {
           isConstructive ? addEdge(newMaze, edge) : removeEdge(newMaze, edge);
           return newMaze;
         });
-      }, index * speed);
+      }, index * (5000/speed));
 
       timeoutIds.current.push(timeoutId);
     });

@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <p className="text-lg md:text-xl max-w-2xl">
           Generate, Visualize, and Conquer
         </p>
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+        <div className="">
 
         </div>
       </div>

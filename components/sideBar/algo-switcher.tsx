@@ -23,7 +23,7 @@ import { MazeAlgorithm } from "@/types";
 export function AlgorithmSwitcher() {
   const { isMobile } = useSidebar();
   const setCurrentAlgorithm = useAlgorithmStore((state) => state.setCurrentAlgorithm);
-  const [activeAlgorithm, setActiveAlgorithm] = React.useState<MazeAlgorithm>(MazeAlgorithm.KRUSKAL);
+  const [activeAlgorithm, setActiveAlgorithm] = React.useState<MazeAlgorithm>(MazeAlgorithm.RECURSIVE_BACKTRACKING);
 
   const handleAlgorithmChange = (algorithm: MazeAlgorithm) => {
     setActiveAlgorithm(algorithm); // Update local active algorithm

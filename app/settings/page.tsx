@@ -11,7 +11,7 @@ import WidthSlider from "@/components/sliders/WidthSlider";
 const App: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-secondary-2 space-y-4">
-      <div className="flex flex-row space-x-8">
+      <div className="flex flex-row space-x-4">
         <ThemeColorToggle />
         <ThemeModeToggle />
       </div>

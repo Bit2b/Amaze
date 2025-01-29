@@ -10,7 +10,7 @@ const CellSizeSlider = () => {
       <Slider
         defaultValue={[cellSize]}
         min={4}
-        max={32}
+        max={24}
         step={4}
         onValueChange={(value) => setCellSize(value[0])} 
       />

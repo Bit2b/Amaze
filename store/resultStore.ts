@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { MazeResult } from "@/types";
-import {create} from 'zustand';
+import { MazeResult } from '@/types';
+import { create } from 'zustand';
 
 interface ResultStore {
   mazeResult: MazeResult;
@@ -9,12 +9,9 @@ interface ResultStore {
 }
 
 export const useResultStore = create<ResultStore>((set) => ({
-  mazeResult:{
-    maze: [
-      [9, 11], 
-      [12, 6],
-    ],
-    mazeSteps: [], 
+  mazeResult: {
+    maze: [[15]],
+    mazeSteps: [],
     isConstructive: true,
   },
   setMazeResult: (result) => set({ mazeResult: result }),
