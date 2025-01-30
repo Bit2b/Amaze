@@ -1,14 +1,14 @@
 import { create } from 'zustand';
 
-type GridState = {
+type DownloadGridState = {
   grid: number[][];
   // (Optional: If exporting as an image)
   gridRef: HTMLDivElement | null;
-  setGridRef: (ref: HTMLDivElement) => void;
+  setDownloadGridRef: (ref: HTMLDivElement) => void;
 };
 
-export const useGridStore = create<GridState>((set) => ({
+export const useDownloadGridStore = create<DownloadGridState>((set) => ({
   grid: [],
   gridRef: null,
-  setGridRef: (gridRef) => set({ gridRef }),
+  setDownloadGridRef: (gridRef) => set({ gridRef }),
 }));

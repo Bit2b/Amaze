@@ -12,7 +12,7 @@ interface PathRendererHelpProps {
 
 const PathRendererHelp: React.FC<PathRendererHelpProps> = ({ path }) => {
     const { speed } = useDimensionsStore();
-    const timerIds = useRef<Set<number>>(new Set());
+    const timeoutIds = useRef<NodeJS.Timeout[]>([]);
     const mazeResult = useResultStore((set) => set.mazeResult.maze);
 
     const [grid, setGrid] = useState(() =>
@@ -25,28 +25,25 @@ const PathRendererHelp: React.FC<PathRendererHelpProps> = ({ path }) => {
     }, [mazeResult]);
 
     useEffect(() => {
-        // Clear existing animations
-        const currentTimers = timerIds.current;
-        currentTimers.forEach(id => clearTimeout(id));
-        currentTimers.clear();
+        // Clear any pending animations
+        timeoutIds.current.forEach(clearTimeout);
+        timeoutIds.current = [];
 
-        // Animate path with proper speed calculation
+        // Animate path
         path.forEach(({ x, y }, idx) => {
-            const timerId = window.setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 setGrid(prev => {
                     const newGrid = prev.map(row => [...row]);
                     newGrid[x][y] |= 64;
                     return newGrid;
                 });
-            }, (idx * 5000) / speed);  // Fixed speed calculation
+            }, (idx * 5000) / speed);
 
-            currentTimers.add(timerId);
+            timeoutIds.current.push(timeoutId);
         });
 
-        return () => {
-            currentTimers.forEach(id => clearTimeout(id));
-            currentTimers.clear();
-        };
+        // Cleanup on unmount
+        return () => timeoutIds.current.forEach(clearTimeout);
     }, [path, speed]);
 
     return <PathRenderer grid={grid} />;

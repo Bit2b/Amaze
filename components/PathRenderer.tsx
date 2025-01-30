@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useGridStore } from "@/store/downloadStore";
+import { useDownloadGridStore } from "@/store/downloadStore";
 import PathRowRenderer from "./pathRenderer/PathRowRenderer";
 
 type GridProps = {
@@ -9,14 +9,14 @@ type GridProps = {
 
 const PathRenderer: React.FC<GridProps> = ({ grid }) => {
   const gridRef = useRef<HTMLDivElement>(null);
-  const setGridRef = useGridStore((state) => state.setGridRef);
+  const setDownloadGridRef = useDownloadGridStore((state) => state.setDownloadGridRef);
 
   // Save the div ref to Zustand on mount
   useEffect(() => {
     if (gridRef.current) {
-      setGridRef(gridRef.current);
+      setDownloadGridRef(gridRef.current);
     }
-  }, [setGridRef]);
+  }, [setDownloadGridRef]);
 
   return (
     <div ref={gridRef} className="bg-background p-4">

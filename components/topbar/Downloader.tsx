@@ -1,9 +1,9 @@
-import { useGridStore } from '@/store/downloadStore';
+import { useDownloadGridStore } from '@/store/downloadStore';
 import html2canvas from 'html2canvas';
 import { Download } from 'lucide-react';
 
 export const Downloader = () => {
-    const gridRef = useGridStore((state) => state.gridRef);
+    const gridRef = useDownloadGridStore((state) => state.gridRef);
 
     const downloadImage = async () => {
         if (!gridRef) return;

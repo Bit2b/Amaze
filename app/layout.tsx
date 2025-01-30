@@ -6,6 +6,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import ThemeDataProvider from "@/context/theme-data-provider";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import MazeAlgorithmSeeder from "@/components/MazeAlgorithmSeeder";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,8 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-        >
+          >
+          <MazeAlgorithmSeeder/>
           <ThemeDataProvider>
             <SidebarProvider>
               <AppSidebar />
