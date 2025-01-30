@@ -2,8 +2,6 @@
 import { MazeAlgorithm } from '@/types';
 import { create } from 'zustand';
 
-
-
 // Type for the store state and actions
 interface AlgorithmStore {
   currentAlgorithm: MazeAlgorithm;

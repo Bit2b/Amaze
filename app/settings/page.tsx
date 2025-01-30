@@ -6,6 +6,7 @@ import { ThemeModeToggle } from "@/components/sliders/theme-mode-toggle";
 import CellSizeSlider from "@/components/sliders/CellSizeSlider";
 import HeightSlider from "@/components/sliders/HeightSlider";
 import WidthSlider from "@/components/sliders/WidthSlider";
+import MazeAlgorithmSeeder from "@/components/MazeAlgorithmSeeder";
 
 
 const App: React.FC = () => {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
       <CellSizeSlider />
       <HeightSlider />
       <WidthSlider />
+      <MazeAlgorithmSeeder/>
     </div>
   );
 };

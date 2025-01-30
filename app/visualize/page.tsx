@@ -39,7 +39,7 @@ const Visualizer = () => {
     // Cleanup on unmount
     return () => timeoutIds.current.forEach(clearTimeout);
   }, [mazeSteps, isConstructive]);
-
+  console.log(maze,mazeSteps);
   return (
     <div className="flex flex-col">
       <Topbar/>

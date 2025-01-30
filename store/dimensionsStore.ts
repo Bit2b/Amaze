@@ -31,7 +31,7 @@ const loadInitialValue = <T>(
 export const useDimensionsStore = create<DimensionsStore>((set) => ({
   height: loadInitialValue('height', 12, (v) => Number.isInteger(v) && v > 0),
   width: loadInitialValue('width', 20, (v) => Number.isInteger(v) && v > 0),
-  cellSize: loadInitialValue('cellSize', 48, (v) =>
+  cellSize: loadInitialValue('cellSize', 32, (v) =>
     [16, 32, 48, 64, 80, 96].includes(v)
   ),
   speed: loadInitialValue('speed', 100, (v) => v >= 25 && v <= 500),

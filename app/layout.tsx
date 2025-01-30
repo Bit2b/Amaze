@@ -26,22 +26,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen`}>
-      <NextThemesProvider
+        <NextThemesProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <ThemeDataProvider>
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="flex-1 flex flex-col">
-            <SidebarTrigger />
-            <div className="flex-1 flex justify-center items-center">
-              {children}
-            </div>
-          </main>
-        </SidebarProvider></ThemeDataProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <main className="flex-1 flex flex-col">
+                <SidebarTrigger />
+                <div className="flex-1 flex justify-center items-center">
+                  {children}
+                </div>
+              </main>
+            </SidebarProvider>
+          </ThemeDataProvider>
         </NextThemesProvider>
       </body>
     </html>
