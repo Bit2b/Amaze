@@ -2,6 +2,9 @@ import { Cell, CellEdge, MazeResult } from '@/types';
 import { createFullGrid, isInsideGrid } from '@/utils/gridUtils';
 import { removeEdge } from '@/utils/wallUtil';
 
+const dx = [0, 0, 1, -1];
+const dy = [-1, 1, 0, 0];
+
 export default function recursiveBacktracker(
   height: number,
   width: number
@@ -16,18 +19,13 @@ export default function recursiveBacktracker(
 
   visited[0][0] = true;
 
-  const dx = [0, 0, 1, -1];
-  const dy = [-1, 1, 0, 0];
-
   while (stack.length > 0) {
     const currentCell = stack.pop()!;
     const unvisitedNeighbors = getUnvisitedNeighbors(
       currentCell,
       visited,
       height,
-      width,
-      dx,
-      dy
+      width
     );
 
     if (unvisitedNeighbors.length > 0) {
@@ -49,9 +47,7 @@ function getUnvisitedNeighbors(
   cell: Cell,
   visited: boolean[][],
   height: number,
-  width: number,
-  dx: number[],
-  dy: number[]
+  width: number
 ): Cell[] {
   const neighbors: Cell[] = [];
 

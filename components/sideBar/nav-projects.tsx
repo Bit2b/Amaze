@@ -17,7 +17,7 @@ import Link from "next/link"
 const projects = [
   {
     name: "Settings",
-    url: "settings",
+    url: "/settings",
     icon: Settings2,
   },
 ]

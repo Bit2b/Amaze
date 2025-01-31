@@ -34,7 +34,14 @@ const PathRendererHelp: React.FC<PathRendererHelpProps> = ({ path }) => {
             const timeoutId = setTimeout(() => {
                 setGrid(prev => {
                     const newGrid = prev.map(row => [...row]);
-                    newGrid[x][y] |= 64;
+                    newGrid[x][y] &= ~((1 << 6) | (1 << 7) | (1 << 8) | (1 << 9));
+                    newGrid[x][y] |= (1 << 6);
+                    prev.forEach((row, i) => row.forEach((cell, j) => {
+                        if (i === x && j === y) return;
+                        if (cell & (1 << 6)) newGrid[i][j] = (cell & ~(1 << 6)) | (1 << 7);
+                        else if (cell & (1 << 7)) newGrid[i][j] = (cell & ~(1 << 7)) | (1 << 8);
+                        else if (cell & (1 << 8)) newGrid[i][j] = (cell & ~(1 << 8)) | (1 << 9);
+                    }));
                     return newGrid;
                 });
             }, (idx * 5000) / speed);

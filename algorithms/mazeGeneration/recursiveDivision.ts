@@ -28,8 +28,9 @@ const divide = (
 
   // const isVertical = Math.random() * ((x2 - x1) + (y2 - y1)) > (x2 - x1);
   // const isVertical = Math.random() > 0.5;
-  const isVertical=(x2-x1)==(y2-y1)?Math.random() > 0.5:(x2-x1)>(y2-y1);
-  
+  const isVertical =
+    x2 - x1 == y2 - y1 ? Math.random() > 0.5 : x2 - x1 > y2 - y1;
+
   if (isVertical) {
     const wallX = Math.floor(Math.random() * (x2 - x1 - 1)) + x1 + 1;
     const doorY = Math.floor(Math.random() * (y2 - y1 + 1)) + y1;

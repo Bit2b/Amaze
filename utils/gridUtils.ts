@@ -21,11 +21,11 @@ export function createEmptyGrid(height: number, width: number): number[][] {
   const grid = Array.from({ length: height }, () => Array(width).fill(0));
   for (let i = 0; i < height; i++) {
     grid[i][0] |= 8;
-    grid[i][width-1] |= 2;
+    grid[i][width - 1] |= 2;
   }
   for (let i = 0; i < width; i++) {
     grid[0][i] |= 1;
-    grid[height-1][i] |= 4;
+    grid[height - 1][i] |= 4;
   }
   return grid;
 }

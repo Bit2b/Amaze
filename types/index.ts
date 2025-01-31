@@ -19,5 +19,8 @@ export enum MazeAlgorithm {
   PRIM = "Prim's Algorithm",
   KRUSKAL = "Kruskal's Algorithm",
   RECURSIVE_DIVISION = 'Recursive Division',
+  BINARY_TREE='Binary Tree',
+  SIDEWINDER='Sidewinder',
+  GROWINGTREE='Growing Tree',
   RANDOM = 'Random',
 }

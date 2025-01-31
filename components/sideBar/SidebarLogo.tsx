@@ -14,7 +14,7 @@ const SidebarLogo = () => {
         </div>
         <div className="grid flex-1 text-left text-sm leading-tight">
           <span className="truncate font-semibold">Amaze</span>
-          <span className="truncate text-xs">Generate And Conquer</span>
+          <span className="truncate text-xs">Generate, Visualize and Conquer</span>
         </div>
       </SidebarMenuButton>
     </Link>

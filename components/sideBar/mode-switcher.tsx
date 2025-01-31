@@ -30,19 +30,19 @@ const modes = [
     name: "Game",
     logo: Gamepad,
     plan: "Click on Grid To Play",
-    url: "game",
+    url: "/game",
   },
   {
     name: "Visualize",
     logo: Route,
     plan: "Watch And Enjoy",
-    url: "visualize",
+    url: "/visualize",
   },
   {
     name: "Generate",
     logo: Blocks,
     plan: "Observe",
-    url: "generate",
+    url: "/generate",
   },
 ];
 export function ModeSwitcher() {

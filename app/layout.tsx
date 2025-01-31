@@ -32,8 +32,8 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-          >
-          <MazeAlgorithmSeeder/>
+        >
+          <MazeAlgorithmSeeder />
           <ThemeDataProvider>
             <SidebarProvider>
               <AppSidebar />

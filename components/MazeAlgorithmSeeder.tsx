@@ -3,6 +3,9 @@ import kruskalsAlgorithm from '@/algorithms/mazeGeneration/kruskalsAlgorithm';
 import primsAlgorithm from '@/algorithms/mazeGeneration/primsAlgorithm';
 import recursiveBacktracker from '@/algorithms/mazeGeneration/recursiveBacktracker';
 import recursiveDivision from '@/algorithms/mazeGeneration/recursiveDivision';
+import binaryTree from '@/algorithms/mazeGeneration/binaryTree';
+import sidewinder from '@/algorithms/mazeGeneration/sidewinder';
+import growingTree from '@/algorithms/mazeGeneration/growingTree';
 import { MazeAlgorithm } from '@/types';
 import { useAlgorithmStore } from '@/store/algorithmStore';
 import { useResultStore } from '@/store/resultStore';
@@ -30,6 +33,18 @@ const MazeAlgorithmSeeder: React.FC = () => {
 
       case MazeAlgorithm.RECURSIVE_BACKTRACKING:
         setMazeResult(recursiveBacktracker(height, width));
+        break;
+
+      case MazeAlgorithm.BINARY_TREE:
+        setMazeResult(binaryTree(height, width));
+        break;
+
+      case MazeAlgorithm.SIDEWINDER:
+        setMazeResult(sidewinder(height, width));
+        break;
+
+      case MazeAlgorithm.GROWINGTREE:
+        setMazeResult(growingTree(height, width));
         break;
 
       default:

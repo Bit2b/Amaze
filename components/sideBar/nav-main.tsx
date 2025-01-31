@@ -27,8 +27,8 @@ const items = [
     isActive: true,
     items: [
       {
-        title: "History",
-        url: "#",
+        title: "Kruskals",
+        url: "/algorithms/kruskals",
       },
       {
         title: "Starred",
