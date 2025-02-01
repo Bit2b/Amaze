@@ -7,7 +7,6 @@ const Topbar = () => {
     <div className="flex justify-center my-8">
       <div className="flex gap-12">
         <Regenerator />
-        <Solver />
         <Downloader />
       </div>
     </div>

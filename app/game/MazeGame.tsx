@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import GridRenderer from '@/components/GridRenderer';
+import { Cell } from '@/types';
 
 type GridProps = {
     grid: number[][];
 };
 
 const MazeGame: React.FC<GridProps> = ({ grid }) => {
-    const [location, setLocation] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const [location, setLocation] = useState<Cell>({ x: 0, y: 0 });
+    const [destination, setDestination] = useState<Cell>({
+        x: grid.length - 1,
+        y: grid[0].length - 1
+    });
     const [maze, setMaze] = useState<number[][]>(grid);
     const [isGameWon, setIsGameWon] = useState<boolean>(false);
     const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
@@ -21,20 +26,17 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
         setLocation((prev) => {
             const newLocation = { ...prev };
 
-            if (event.key === 'ArrowUp' && !(grid[prev.y][prev.x] & 1)) {
-                newLocation.y -= 1;
-            }
-            if (event.key === 'ArrowRight' && !(grid[prev.y][prev.x] & 2)) {
-                newLocation.x += 1;
-            }
-            if (event.key === 'ArrowDown' && !(grid[prev.y][prev.x] & 4)) {
-                newLocation.y += 1;
-            }
-            if (event.key === 'ArrowLeft' && !(grid[prev.y][prev.x] & 8)) {
+            if (event.key === 'ArrowUp' && !(grid[prev.x][prev.y] & 1)) {
                 newLocation.x -= 1;
             }
-            if (newLocation.x === grid.length - 1 && newLocation.y === grid[0].length - 1) {
-                setIsGameWon(true)
+            if (event.key === 'ArrowRight' && !(grid[prev.x][prev.y] & 2)) {
+                newLocation.y += 1;
+            }
+            if (event.key === 'ArrowDown' && !(grid[prev.x][prev.y] & 4)) {
+                newLocation.x += 1;
+            }
+            if (event.key === 'ArrowLeft' && !(grid[prev.x][prev.y] & 8)) {
+                newLocation.y -= 1;
             }
             return newLocation;
         });
@@ -43,31 +45,33 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
     useEffect(() => {
         const newGrid = grid.map((row, rowIndex) =>
             row.map((cell, colIndex) => {
-                if (rowIndex === location.y && colIndex === location.x) {
+                if (rowIndex === location.x && colIndex === location.y) {
                     return cell | 16;
                 }
-                if (rowIndex === grid.length - 1 && colIndex === grid[0].length - 1) {
+                if (rowIndex === destination.x && colIndex === destination.y) {
                     return cell | 32;
                 }
                 return cell;
-            }));
+            })
+        );
         setMaze(newGrid);
-    }, [location, grid]);
+    }, [location, grid, destination]);
 
     useEffect(() => {
-        const destinationX = grid[0].length - 1;
-        const destinationY = grid.length - 1;
-
-        if (location.x === destinationX && location.y === destinationY) {
+        if (location.x === destination.x && location.y === destination.y) {
             setIsGameWon(true);
         }
-    }, [location, grid]);
+    }, [location, destination]);
 
     useEffect(() => {
         setIsGameStarted(false);
         setIsGameWon(false);
         setLocation({ x: 0, y: 0 });
-    }, [grid])
+        setDestination({
+            x: grid.length - 1,
+            y: grid[0].length - 1
+        });
+    }, [grid]);
 
     return (
         <div className='w-full' tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>

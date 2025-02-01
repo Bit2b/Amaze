@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Solver = () => {
     return (
         <div className="relative group">
-            <Link href="solution">
+            <Link href="game/solution">
             <button>
                 <Waypoints className="h-6 w-6 text-primary" />
             </button>
