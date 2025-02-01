@@ -28,7 +28,7 @@ const items = [
     items: [
       {
         title: "Kruskals",
-        url: "/algorithms/kruskals",
+        url: "/algorithmsDocs/kruskals",
       },
       {
         title: "Starred",

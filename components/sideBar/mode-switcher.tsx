@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Blocks, ChevronsUpDown, Gamepad, LayoutPanelTop, Route } from "lucide-react";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,13 +45,11 @@ const modes = [
     url: "/generate",
   },
 ];
+
 export function ModeSwitcher() {
   const { isMobile } = useSidebar();
-  const [activeMode, setActiveMode] = React.useState(modes[0]);
-
-  const handleModeChange = (mode: typeof modes[number]) => {
-    setActiveMode(mode);
-  };
+  const pathname = usePathname();
+  const activeMode = modes.find(mode => mode.url === pathname) || modes[0];
 
   return (
     <SidebarMenu>
@@ -86,14 +84,16 @@ export function ModeSwitcher() {
             {modes.map((mode) => (
               <DropdownMenuItem
                 key={mode.name}
-                onClick={() => handleModeChange(mode)}
-                className="gap-2 p-2 cursor-pointer"
+                asChild
+                className="p-0 cursor-pointer"
               >
-                <Link href={mode.url} className="flex w-full items-center gap-2">
-                  <div className="flex size-6 items-center justify-center rounded-sm border">
-                    <mode.logo className="size-4 shrink-0" />
+                <Link href={mode.url} className="w-full">
+                  <div className="flex items-center gap-2 p-2">
+                    <div className="flex size-6 items-center justify-center rounded-sm border">
+                      <mode.logo className="size-4 shrink-0" />
+                    </div>
+                    {mode.name}
                   </div>
-                  {mode.name}
                 </Link>
               </DropdownMenuItem>
             ))}
