@@ -38,7 +38,7 @@ export default function RootLayout({
             <SidebarProvider>
               <AppSidebar />
               <main className="flex-1 flex flex-col">
-                <SidebarTrigger />
+                <SidebarTrigger className="absolute"/>
                 <div className="flex-1 flex justify-center items-center">
                   {children}
                 </div>

@@ -1,4 +1,5 @@
 import { Downloader } from "./topbar/Downloader";
+import GameLevelSelect from "./topbar/GameLevelSelect";
 import Regenerator from "./topbar/Regenerator";
 import Solver from "./topbar/Solver";
 
@@ -9,6 +10,7 @@ const GameTopbar = () => {
                 <Regenerator />
                 <Solver />
                 <Downloader />
+                <GameLevelSelect />
             </div>
         </div>
     );

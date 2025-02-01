@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import GridRenderer from '@/components/GridRenderer';
 import { Cell } from '@/types';
+import { useGameLevelStore } from '@/store/gameLevelStore';
+import farthestFromSource from '@/algorithms/mazeDestinationFinder/farthestFromSource';
+import diameterMaze from '@/algorithms/mazeDestinationFinder/diameterMaze';
 
 type GridProps = {
     grid: number[][];
@@ -12,6 +15,7 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
         x: grid.length - 1,
         y: grid[0].length - 1
     });
+    const gameLevel = useGameLevelStore((set) => set.currentGameLevel);
     const [maze, setMaze] = useState<number[][]>(grid);
     const [isGameWon, setIsGameWon] = useState<boolean>(false);
     const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
@@ -66,18 +70,27 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
     useEffect(() => {
         setIsGameStarted(false);
         setIsGameWon(false);
-        setLocation({ x: 0, y: 0 });
-        setDestination({
+        let source: Cell = { x: 0, y: 0 }, destination: Cell = {
             x: grid.length - 1,
             y: grid[0].length - 1
-        });
-    }, [grid]);
+        };
+        if (gameLevel === "Normal") {
+            destination = farthestFromSource(maze, source);
+        }
+        if (gameLevel === "Nightmare") {
+            [source, destination] = diameterMaze(maze);
+        }
+        setLocation(source);
+        setDestination(destination);
+    }, [grid, gameLevel]);
 
     return (
-        <div className='w-full' tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>
-            {isGameWon && <div className="text-center text-xl font-bold">You Win!</div>}
-            {!isGameWon && isGameStarted && <div className="text-center text-xl font-bold">Go...</div>}
-            {!isGameStarted && <div className="text-center text-xl font-bold">Click on the Maze to start</div>}
+        <div className="" tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>
+            <div className="max-w-[600px] h-[35px] mx-auto text-center text-xl font-bold mb-4">
+                {isGameWon && <div>You Win!</div>}
+                {!isGameWon && isGameStarted && <div>Go...</div>}
+                {!isGameStarted && <div>Click on the Maze to start & use Arrow Key to Navigate</div>}
+            </div>
             <GridRenderer grid={maze} />
         </div>
     );

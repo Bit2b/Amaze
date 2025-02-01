@@ -22,11 +22,10 @@ export enum MazeAlgorithm {
   BINARY_TREE = 'Binary Tree',
   SIDEWINDER = 'Sidewinder',
   GROWINGTREE = 'Growing Tree',
-  RANDOM = 'Random',
 }
 
 export enum GameLevel {
-  EASY = 1,
-  NORMAL = 2,
-  NIGHTMARE = 3,
+  EASY = 'Easy',
+  NORMAL = 'Normal',
+  NIGHTMARE = 'Nightmare',
 }

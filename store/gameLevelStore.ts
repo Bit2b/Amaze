@@ -11,7 +11,7 @@ interface GameLevelStore {
 // Creating a Zustand store
 export const useGameLevelStore = create<GameLevelStore>((set) => ({
   currentGameLevel: GameLevel.EASY,
-  gameLevels: [GameLevel.EASY, GameLevel.NORMAL, GameLevel.NIGHTMARE],
+  gameLevels: Object.values(GameLevel) as GameLevel[],
   setCurrentGameLevel: (gameLevel: GameLevel) =>
-    set(() => ({ currentGameLevel: gameLevel })),
+    set({ currentGameLevel: gameLevel }),
 }));

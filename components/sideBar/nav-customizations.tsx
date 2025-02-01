@@ -1,9 +1,6 @@
 "use client"
 
-import {
-  Settings2,
-  type LucideIcon,
-} from "lucide-react"
+import { Settings2 } from "lucide-react"
 
 import {
   SidebarGroup,
@@ -14,20 +11,20 @@ import {
 } from "@/components/ui/sidebar"
 import Link from "next/link"
 
-const projects = [
+const customizations = [
   {
     name: "Settings",
     url: "/settings",
     icon: Settings2,
   },
 ]
-export function NavProjects() {
+export function NavCustomizations() {
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>customizations</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => (
+        {customizations.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <Link href={item.url}>
