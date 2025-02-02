@@ -15,4 +15,6 @@ const PathRowRenderer: React.FC<RowProps> = memo(({ row }) => {
   );
 });
 
+PathRowRenderer.displayName = "PathRowRenderer";
+
 export default PathRowRenderer;

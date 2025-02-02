@@ -16,7 +16,7 @@ const PathCellRenderer: React.FC<CellProps> = memo(({ value }) => {
     const active = value & (1 << 7) ? "bg-violet-700" : "";
     const active2 = value & (1 << 8) ? "bg-indigo-700" : "";
     const completed = value & (1 << 9) ? "bg-blue-700" : "";
-    let { cellSize } = useDimensionsStore();
+    const { cellSize } = useDimensionsStore();
 
     return (
         <div
@@ -25,5 +25,7 @@ const PathCellRenderer: React.FC<CellProps> = memo(({ value }) => {
         ></div>
     );
 });
+
+PathCellRenderer.displayName = "PathCellRenderer";
 
 export default PathCellRenderer;

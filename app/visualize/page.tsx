@@ -13,7 +13,7 @@ const Visualizer = () => {
   const { mazeSteps, isConstructive } = useResultStore(state => state.mazeResult);
   const [maze, setMaze] = React.useState<number[][]>(() => createFullGrid(height, width));
   const timeoutIds = useRef<NodeJS.Timeout[]>([]);
-  const {speed}=useDimensionsStore();
+  const { speed } = useDimensionsStore();
 
   useEffect(() => {
     // Clear any pending animations
@@ -28,21 +28,27 @@ const Visualizer = () => {
       const timeoutId = setTimeout(() => {
         setMaze(prev => {
           const newMaze = prev.map(row => [...row]);
-          isConstructive ? addEdge(newMaze, edge) : removeEdge(newMaze, edge);
+          if (isConstructive) {
+            addEdge(newMaze, edge);
+          } else {
+            removeEdge(newMaze, edge);
+          }
           return newMaze;
         });
-      }, index * (5000/speed));
+      }, index * (5000 / speed));
 
       timeoutIds.current.push(timeoutId);
     });
 
     // Cleanup on unmount
-    return () => timeoutIds.current.forEach(clearTimeout);
-  }, [mazeSteps, isConstructive]);
-  console.log(maze,mazeSteps);
+    return () => {
+      timeoutIds.current.forEach(clearTimeout);
+    };
+  }, [mazeSteps, isConstructive, height, width, speed]);
+
   return (
     <div className="flex flex-col">
-      <Topbar/>
+      <Topbar />
       <GridRenderer grid={maze} />
     </div>
   );

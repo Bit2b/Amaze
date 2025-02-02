@@ -15,4 +15,6 @@ const RowRenderer: React.FC<RowProps> = memo(({ row }) => {
   );
 });
 
+RowRenderer.displayName = "RowRenderer";
+
 export default RowRenderer;

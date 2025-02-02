@@ -1,6 +1,5 @@
 import { Downloader } from "./topbar/Downloader";
 import Regenerator from "./topbar/Regenerator";
-import Solver from "./topbar/Solver";
 
 const Topbar = () => {
   return (

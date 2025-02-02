@@ -22,14 +22,11 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
 
     const movePlayer = (event: React.KeyboardEvent<HTMLDivElement>) => {
         event.preventDefault();
-
         setIsGameStarted(true);
-
         if (isGameWon) return;
 
         setLocation((prev) => {
             const newLocation = { ...prev };
-
             if (event.key === 'ArrowUp' && !(grid[prev.x][prev.y] & 1)) {
                 newLocation.x -= 1;
             }
@@ -49,17 +46,18 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
     useEffect(() => {
         const newGrid = grid.map((row, rowIndex) =>
             row.map((cell, colIndex) => {
+                let newCell = cell;
                 if (rowIndex === location.x && colIndex === location.y) {
-                    return cell | 16;
+                    newCell |= 16;
                 }
                 if (rowIndex === destination.x && colIndex === destination.y) {
-                    return cell | 32;
+                    newCell |= 32;
                 }
-                return cell;
+                return newCell;
             })
         );
         setMaze(newGrid);
-    }, [location, grid, destination]);
+    }, [location, destination, grid]);
 
     useEffect(() => {
         if (location.x === destination.x && location.y === destination.y) {
@@ -70,15 +68,16 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
     useEffect(() => {
         setIsGameStarted(false);
         setIsGameWon(false);
-        let source: Cell = { x: 0, y: 0 }, destination: Cell = {
+        let source: Cell = { x: 0, y: 0 };
+        let destination: Cell = {
             x: grid.length - 1,
             y: grid[0].length - 1
         };
         if (gameLevel === "Normal") {
-            destination = farthestFromSource(maze, source);
+            destination = farthestFromSource(grid, source);
         }
         if (gameLevel === "Nightmare") {
-            [source, destination] = diameterMaze(maze);
+            [source, destination] = diameterMaze(grid);
         }
         setLocation(source);
         setDestination(destination);

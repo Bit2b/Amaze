@@ -33,7 +33,7 @@ const App = () => {
             const newPath = pathBfs(mazeResult, source, destination);
             setPath(newPath);
         }
-    }, [gameLevel,mazeResult])
+    }, [gameLevel,mazeResult,height,width])
     
     return (
         <div className="flex flex-col">

@@ -12,7 +12,7 @@ const CellRenderer: React.FC<CellProps> = memo(({ value }) => {
   const left = value & 8 ? "border-l-2 border-primary" : "";
   const player = value & 16 ? "bg-chart-2" : "";
   const destination = value & 32 ? "bg-chart-5" : "";
-  let { cellSize } = useDimensionsStore();
+  const { cellSize } = useDimensionsStore();
 
   return (
     <div
@@ -21,5 +21,7 @@ const CellRenderer: React.FC<CellProps> = memo(({ value }) => {
     ></div>
   );
 });
+
+CellRenderer.displayName = "CellRenderer";
 
 export default CellRenderer;
