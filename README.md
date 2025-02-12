@@ -37,10 +37,18 @@ Welcome to the **Maze Generator & Solver**, a Next.js application that allows us
 ## 📸 Screenshots
 
 **Game**
+<br>
+
 ![alt text](public/maze%20(1).png)
+
 **visualization**
+<br>
+
 ![alt text](public/maze.png)
+
 **Generation**
+<br>
+
 ![alt text](public/maze%20(2).png)
 
 ## 📜 License

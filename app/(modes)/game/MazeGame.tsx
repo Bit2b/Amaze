@@ -1,19 +1,23 @@
+'use client'
+
 import React, { useEffect, useState } from 'react';
 import GridRenderer from '@/components/GridRenderer';
 import { Cell } from '@/types';
 import { useGameLevelStore } from '@/store/gameLevelStore';
 import farthestFromSource from '@/algorithms/mazeDestinationFinder/farthestFromSource';
 import diameterMaze from '@/algorithms/mazeDestinationFinder/diameterMaze';
+import { useDimensionsStore } from '@/store/dimensionsStore';
 
 type GridProps = {
     grid: number[][];
 };
 
 const MazeGame: React.FC<GridProps> = ({ grid }) => {
+    const { height, width } = useDimensionsStore();
     const [location, setLocation] = useState<Cell>({ x: 0, y: 0 });
     const [destination, setDestination] = useState<Cell>({
-        x: grid.length - 1,
-        y: grid[0].length - 1
+        x: height - 1,
+        y: width - 1
     });
     const gameLevel = useGameLevelStore((set) => set.currentGameLevel);
     const [maze, setMaze] = useState<number[][]>(grid);
@@ -70,8 +74,8 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
         setIsGameWon(false);
         let source: Cell = { x: 0, y: 0 };
         let destination: Cell = {
-            x: grid.length - 1,
-            y: grid[0].length - 1
+            x: height - 1,
+            y: width - 1
         };
         if (gameLevel === "Normal") {
             destination = farthestFromSource(grid, source);
@@ -81,7 +85,7 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
         }
         setLocation(source);
         setDestination(destination);
-    }, [grid, gameLevel]);
+    }, [grid, gameLevel, height, width]);
 
     return (
         <div className="" tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>

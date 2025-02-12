@@ -1,3 +1,5 @@
+"use client";
+
 import { Slider } from "@/components/ui/slider";
 import { useDimensionsStore } from "@/store/dimensionsStore";
 
