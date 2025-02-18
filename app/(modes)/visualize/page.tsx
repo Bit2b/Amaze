@@ -1,57 +1,54 @@
 'use client';
 
-import { createEmptyGrid, createFullGrid } from '@/utils/gridUtils';
-import { addEdge, removeEdge } from '@/utils/wallUtil';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import GridRenderer from '@/components/GridRenderer';
 import { useResultStore } from '@/store/resultStore';
 import { useDimensionsStore } from '@/store/dimensionsStore';
-import Topbar from '@/components/Topbar';
+import VisualizeTopbar from '@/components/VisualizeTopbar';
+import useStepHandler from '@/hooks/useStepHandler';
 
-const Visualizer = () => {
-  const { height, width } = useDimensionsStore();
+const VisualizePage = () => {
+  const { height, width, speed } = useDimensionsStore();
   const { mazeSteps, isConstructive } = useResultStore(state => state.mazeResult);
-  const [maze, setMaze] = React.useState<number[][]>(() => createFullGrid(height, width));
-  const timeoutIds = useRef<NodeJS.Timeout[]>([]);
-  const { speed } = useDimensionsStore();
+  const [isRunning, setIsRunning] = useState(true);
+
+  const { maze, handleNextStep, handlePrevStep, currentStep } = useStepHandler({
+    mazeSteps,
+    isConstructive,
+    height,
+    width
+  });
 
   useEffect(() => {
-    // Clear any pending animations
-    timeoutIds.current.forEach(clearTimeout);
-    timeoutIds.current = [];
+    if (!isRunning) return;
 
-    // Initialize grid based on algorithm type
-    setMaze(isConstructive ? createEmptyGrid(height, width) : createFullGrid(height, width));
+    const current = setInterval(() => {
+      if (currentStep >= mazeSteps.length) {
+        setIsRunning(false);
+        return;
+      }
+      handleNextStep();
+    }, 5000 / speed);
 
-    // Create animation sequence
-    mazeSteps.forEach((edge, index) => {
-      const timeoutId = setTimeout(() => {
-        setMaze(prev => {
-          const newMaze = prev.map(row => [...row]);
-          if (isConstructive) {
-            addEdge(newMaze, edge);
-          } else {
-            removeEdge(newMaze, edge);
-          }
-          return newMaze;
-        });
-      }, index * (5000 / speed));
+    return () => clearInterval(current);
 
-      timeoutIds.current.push(timeoutId);
-    });
+  }, [isRunning, speed, currentStep, mazeSteps.length, handleNextStep]);
 
-    // Cleanup on unmount
-    return () => {
-      timeoutIds.current.forEach(clearTimeout);
-    };
-  }, [mazeSteps, isConstructive, height, width, speed]);
+  useEffect(() => {
+    setIsRunning(true);
+  }, [mazeSteps]);
 
   return (
-    <div className="flex flex-col">
-      <Topbar />
+    <div className="flex flex-col h-screen">
+      <VisualizeTopbar
+        isPlaying={isRunning}
+        onTogglePlay={() => currentStep < mazeSteps.length && setIsRunning(!isRunning)}
+        onStepBack={handlePrevStep}
+        onStepForward={handleNextStep}
+      />
       <GridRenderer grid={maze} />
     </div>
   );
 };
 
-export default Visualizer;
+export default VisualizePage;

@@ -38,10 +38,21 @@ export function addEdge(maze: number[][], edge: CellEdge): void {
 
 export function isEdge(maze: number[][], cellA: Cell, cellB: Cell): boolean {
   if (cellA.x === cellB.x) {
-      const first = Math.min(cellA.y, cellB.y);
-      return (maze[cellA.x][first] & 2) !== 0;
+    const first = Math.min(cellA.y, cellB.y);
+    return (maze[cellA.x][first] & 2) !== 0;
   } else {
-      const first = Math.min(cellA.x, cellB.x);
-      return (maze[first][cellA.y] & 4) !== 0;
+    const first = Math.min(cellA.x, cellB.x);
+    return (maze[first][cellA.y] & 4) !== 0;
   }
+}
+
+//moveNext is a boolean which determine if to moveNext or toMoveBack in the mazeSteps
+export function EdgeModifier(
+  maze: number[][],
+  edge: CellEdge,
+  isConstructive: boolean,
+  moveNext: boolean
+) {
+  const modifyEdge = moveNext === isConstructive ? addEdge : removeEdge;
+  return modifyEdge(maze, edge);
 }
