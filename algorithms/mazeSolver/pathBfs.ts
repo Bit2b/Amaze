@@ -1,5 +1,5 @@
 import { Cell } from '@/types';
-import { isInsideGrid } from '@/utils/gridUtils';
+import { directions, isInsideGrid } from '@/utils/algoUtils';
 import { isEdge } from '@/utils/wallUtil';
 
 export default function pathBfs(
@@ -19,8 +19,6 @@ export default function pathBfs(
   const queue: Cell[] = [source];
   visited[source.x][source.y] = true;
 
-  const dx = [0, 0, 1, -1];
-  const dy = [-1, 1, 0, 0];
 
   while (queue.length > 0) {
     const current = queue.shift()!;
@@ -30,8 +28,8 @@ export default function pathBfs(
     }
 
     for (let i = 0; i < 4; i++) {
-      const nextX = current.x + dx[i];
-      const nextY = current.y + dy[i];
+      const nextX = current.x + directions.dx[i];
+      const nextY = current.y + directions.dy[i];
       const next: Cell = { x: nextX, y: nextY };
 
       if (!isInsideGrid(nextX, nextY, height, width)) continue;

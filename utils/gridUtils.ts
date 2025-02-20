@@ -1,16 +1,6 @@
 // utils/gridUtils.ts
 import { CellEdge } from '@/types';
 
-// Check if a cell is within the grid bounds
-export function isInsideGrid(
-  x: number,
-  y: number,
-  height: number,
-  width: number
-): boolean {
-  return x >= 0 && x < height && y >= 0 && y < width;
-}
-
 // Create a grid of walls (binary 1111 represents walls)
 export function createFullGrid(height: number, width: number): number[][] {
   return Array.from({ length: height }, () => Array(width).fill(15));
