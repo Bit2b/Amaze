@@ -8,16 +8,11 @@ import VisualizeTopbar from '@/components/VisualizeTopbar';
 import useStepHandler from '@/hooks/useStepHandler';
 
 const VisualizePage = () => {
-  const { height, width, speed } = useDimensionsStore();
-  const { mazeSteps, isConstructive } = useResultStore(state => state.mazeResult);
+  const { speed } = useDimensionsStore();
+  const { mazeSteps } = useResultStore(state => state.mazeResult);
   const [isRunning, setIsRunning] = useState(true);
 
-  const { maze, handleNextStep, handlePrevStep, currentStep } = useStepHandler({
-    mazeSteps,
-    isConstructive,
-    height,
-    width
-  });
+  const { maze, handleNextStep, handlePrevStep, handleGoStart, handleGoFinish, currentStep } = useStepHandler();
 
   useEffect(() => {
     if (!isRunning) return;
@@ -45,6 +40,8 @@ const VisualizePage = () => {
         onTogglePlay={() => currentStep < mazeSteps.length && setIsRunning(!isRunning)}
         onStepBack={handlePrevStep}
         onStepForward={handleNextStep}
+        onStart={handleGoStart}
+        onFinish={handleGoFinish}
       />
       <GridRenderer grid={maze} />
     </div>

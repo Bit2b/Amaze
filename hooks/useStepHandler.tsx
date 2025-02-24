@@ -4,15 +4,12 @@ import { useState, useEffect, useRef } from 'react';
 import { createEmptyGrid, createFullGrid } from '@/utils/gridUtils';
 import { EdgeModifier } from '@/utils/wallUtil';
 import { CellEdge } from '@/types';
+import { useResultStore } from '@/store/resultStore';
+import { useDimensionsStore } from '@/store/dimensionsStore';
 
-interface StepHandlerParams {
-    mazeSteps: CellEdge[];
-    isConstructive: boolean;
-    height: number;
-    width: number;
-}
-
-const useStepHandler = ({ mazeSteps, isConstructive, height, width }: StepHandlerParams) => {
+const useStepHandler = () => {
+    const { isConstructive, maze: finalMaze, mazeSteps } = useResultStore((state) => state.mazeResult);
+    const { height, width } = useDimensionsStore();
     const [maze, setMaze] = useState(() =>
         isConstructive ? createEmptyGrid(height, width) : createFullGrid(height, width)
     );
@@ -37,13 +34,23 @@ const useStepHandler = ({ mazeSteps, isConstructive, height, width }: StepHandle
         stepIndex.current++;
     };
 
+    const handleGoFinish = () => {
+        setMaze(finalMaze);
+        stepIndex.current = mazeSteps.length;
+    }
+
+    const handleGoStart = () => {
+        setMaze(isConstructive ? createEmptyGrid(height, width) : createFullGrid(height, width));
+        stepIndex.current = 0;
+    }
+
     const handlePrevStep = () => {
         if (stepIndex.current <= 0) return;
         stepIndex.current--;
         updateMaze(mazeSteps[stepIndex.current], false);
     };
 
-    return { maze, handleNextStep, handlePrevStep, currentStep: stepIndex.current };
+    return { maze, handleNextStep, handlePrevStep, handleGoStart, handleGoFinish, currentStep: stepIndex.current };
 };
 
 export default useStepHandler;
