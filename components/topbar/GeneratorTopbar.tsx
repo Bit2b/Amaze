@@ -1,7 +1,7 @@
-import { Downloader } from "./topbar/Downloader";
-import Regenerator from "./topbar/Regenerator";
+import { Downloader } from "./buttons/Downloader";
+import Regenerator from "./buttons/Regenerator";
 
-const Topbar = () => {
+const GeneratorTopbar = () => {
   return (
     <div className="flex justify-center my-8">
       <div className="flex gap-12">
@@ -12,4 +12,4 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+export default GeneratorTopbar;

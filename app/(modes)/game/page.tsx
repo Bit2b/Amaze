@@ -2,15 +2,15 @@
 
 import MazeGame from './MazeGame';
 import { useResultStore } from '@/store/resultStore';
-import GameTopbar from '@/components/GameTopbar';
+import GameTopbar from '@/components/topbar/GameTopbar';
 
 const Mazes = () => {
-  
-  const mazeGrid = useResultStore((set)=>set.mazeResult.maze);
+
+  const mazeGrid = useResultStore((set) => set.mazeResult.maze);
   return (
     <div>
-      <GameTopbar/>
-      <MazeGame grid={mazeGrid}/>
+      <GameTopbar />
+      <MazeGame grid={mazeGrid} />
     </div>
   );
 }

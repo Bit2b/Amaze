@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import GridRenderer from '@/components/GridRenderer';
 import { useResultStore } from '@/store/resultStore';
 import { useDimensionsStore } from '@/store/dimensionsStore';
-import VisualizeTopbar from '@/components/VisualizeTopbar';
+import VisualizeTopbar from '@/components/topbar/VisualizeTopbar';
 import useStepHandler from '@/hooks/useStepHandler';
 
 const VisualizePage = () => {

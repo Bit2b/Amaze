@@ -6,7 +6,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "../ui/select";
+} from "../../ui/select";
 import { GameLevel } from "@/types";
 import { SelectLabel } from "@radix-ui/react-select";
 

@@ -1,11 +1,11 @@
 import type { FC } from "react";
-import { Downloader } from "./topbar/Downloader";
-import Regenerator from "./topbar/Regenerator";
-import StepBack from "./topbar/StepBack";
-import StepPlayPause from "./topbar/StepPlayPause";
-import StepForward from "./topbar/StepForward";
-import StepStart from "./topbar/StepStart";
-import StepFinish from "./topbar/StepFinish";
+import { Downloader } from "./buttons/Downloader";
+import Regenerator from "./buttons/Regenerator";
+import StepBack from "./buttons/StepBack";
+import StepPlayPause from "./buttons/StepPlayPause";
+import StepForward from "./buttons/StepForward";
+import StepStart from "./buttons/StepStart";
+import StepFinish from "./buttons/StepFinish";
 
 interface PlayPauseProps {
     isPlaying: boolean;

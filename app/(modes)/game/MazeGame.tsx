@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react';
 import GridRenderer from '@/components/GridRenderer';
 import { Cell } from '@/types';
 import { useGameLevelStore } from '@/store/gameLevelStore';
-import farthestFromSource from '@/algorithms/mazeDestinationFinder/farthestFromSource';
-import diameterMaze from '@/algorithms/mazeDestinationFinder/diameterMaze';
 import { useDimensionsStore } from '@/store/dimensionsStore';
+import { findSourceAndDestination } from '@/utils/gameUtils';
 
 type GridProps = {
     grid: number[][];
@@ -72,17 +71,7 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
     useEffect(() => {
         setIsGameStarted(false);
         setIsGameWon(false);
-        let source: Cell = { x: 0, y: 0 };
-        let destination: Cell = {
-            x: height - 1,
-            y: width - 1
-        };
-        if (gameLevel === "Normal") {
-            destination = farthestFromSource(grid, source);
-        }
-        if (gameLevel === "Nightmare") {
-            [source, destination] = diameterMaze(grid);
-        }
+        const { source, destination } = findSourceAndDestination(height, width, gameLevel, grid);
         setLocation(source);
         setDestination(destination);
     }, [grid, gameLevel, height, width]);

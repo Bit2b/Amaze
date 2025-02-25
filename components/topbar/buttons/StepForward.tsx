@@ -1,19 +1,19 @@
-import { ChevronLeft } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
-interface StepBackProps {
+interface StepForwardProps {
     isPlaying: boolean;
-    onStepBack: () => void;
+    onStepForward: () => void;
 }
 
-const StepBack: React.FC<StepBackProps> = ({ onStepBack, isPlaying }) => {
+const StepForward: React.FC<StepForwardProps> = ({ isPlaying, onStepForward }) => {
     const holdInterval = useRef<NodeJS.Timeout | null>(null);
 
     const handleMouseDown = () => {
-        onStepBack();
+        onStepForward();
         holdInterval.current = setInterval(() => {
-            onStepBack();
-        }, 100);
+            onStepForward();
+        }, 150);
     };
 
     const handleMouseUp = () => {
@@ -32,16 +32,16 @@ const StepBack: React.FC<StepBackProps> = ({ onStepBack, isPlaying }) => {
                     onMouseLeave={handleMouseUp}
                     onTouchStart={handleMouseDown}
                     onTouchEnd={handleMouseUp}
-                    aria-label="Step Back"
+                    aria-label="Step Forward"
                     className="p-1 hover:bg-accent rounded-md transition-colors"
                 >
-                    <ChevronLeft className="h-6 w-6 text-primary" />
+                    <ChevronRight className="h-6 w-6 text-primary" />
                 </button>
                 <span className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground text-sm px-2 py-1 rounded-lg shadow-md transition-opacity duration-300 pointer-events-none">
-                    Step Back
+                    Step Forward
                 </span>
             </div>
     );
 };
 
-export default StepBack;
+export default StepForward;

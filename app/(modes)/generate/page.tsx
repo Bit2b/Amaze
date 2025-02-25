@@ -1,7 +1,7 @@
 'use client';
 
 import GridRenderer from "@/components/GridRenderer";
-import Topbar from "@/components/Topbar";
+import Topbar from "@/components/topbar/GeneratorTopbar";
 import { useResultStore } from "@/store/resultStore";
 
 const App: React.FC = () => {

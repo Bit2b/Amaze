@@ -1,7 +1,7 @@
-import { Downloader } from "./topbar/Downloader";
-import GameLevelSelect from "./topbar/GameLevelSelect";
-import Regenerator from "./topbar/Regenerator";
-import Solver from "./topbar/Solver";
+import { Downloader } from "./buttons/Downloader";
+import GameLevelSelect from "./buttons/GameLevelSelect";
+import Regenerator from "./buttons/Regenerator";
+import Solver from "./buttons/Solver";
 
 const GameTopbar = () => {
     return (
