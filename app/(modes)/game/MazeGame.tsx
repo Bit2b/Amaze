@@ -77,7 +77,7 @@ const MazeGame: React.FC<GridProps> = ({ grid }) => {
     }, [grid, gameLevel, height, width]);
 
     return (
-        <div className="flex flex-col items-center" tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>
+        <div tabIndex={0} onKeyDown={movePlayer} style={{ outline: 'none' }}>
             <div className="max-w-[600px] h-[35px] mx-auto text-center text-xl font-bold mb-4">
                 {isGameWon && <div>You Win!</div>}
                 {!isGameWon && isGameStarted && <div>Go...</div>}

@@ -51,7 +51,7 @@ const SolutionRenderer = () => {
     }, [path]);
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col h-screen">
             <SolverTopbar
                 isPlaying={isRunning}
                 onTogglePlay={() => currentStep < path.length && setIsRunning(!isRunning)}

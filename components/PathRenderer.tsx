@@ -19,7 +19,7 @@ const PathRenderer: React.FC<GridProps> = ({ grid }) => {
   }, [setDownloadGridRef]);
 
   return (
-    <div ref={gridRef} className="bg-background p-4">
+    <div ref={gridRef} className="bg-background p-4 flex flex-col items-center">
       {grid.map((row, index) => (
         <PathRowRenderer key={index} row={row} />
       ))}

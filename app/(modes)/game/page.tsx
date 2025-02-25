@@ -8,7 +8,7 @@ const Mazes = () => {
 
   const mazeGrid = useResultStore((set) => set.mazeResult.maze);
   return (
-    <div>
+    <div className='flex flex-col h-screen'>
       <GameTopbar />
       <MazeGame grid={mazeGrid} />
     </div>
