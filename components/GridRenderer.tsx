@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useDownloadGridStore } from "@/store/downloadStore";
-import RowRenderer from "./gridRenderers/RowRenderer";
+import CellRenderer from "./gridRenderers/CellRenderer";
 
 type GridProps = {
   grid: number[][];
@@ -20,8 +20,12 @@ const GridRenderer: React.FC<GridProps> = ({ grid }) => {
 
   return (
     <div ref={gridRef} className="bg-background p-4 flex flex-col items-center">
-      {grid.map((row, index) => (
-        <RowRenderer key={index} row={row} />
+      {grid.map((row, rowIndex) => (
+        <div key={rowIndex} className="flex">
+          {row.map((cell, cellIndex) => (
+            <CellRenderer key={cellIndex} value={cell} />
+          ))}
+        </div>
       ))}
     </div>
   );
