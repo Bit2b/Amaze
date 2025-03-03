@@ -1,4 +1,5 @@
 import { useDimensionsStore } from "@/store/dimensionsStore";
+import { useShowEmptyCellStore } from "@/store/showEmptyCellStore";
 import React, { memo } from "react";
 
 type CellProps = {
@@ -13,12 +14,17 @@ const CellRenderer: React.FC<CellProps> = memo(({ value }) => {
   const player = value & 16 ? "bg-chart-2" : "";
   const destination = value & 32 ? "bg-chart-5" : "";
   const { cellSize } = useDimensionsStore();
+  const showEmptyGrid = useShowEmptyCellStore((state) => state.showEmptyCell);
 
   return (
-    <div
+    value === 15 && showEmptyGrid ? <div
       style={{ width: cellSize, height: cellSize }}
-      className={`flex items-center justify-center ${top} ${right} ${bottom} ${left} ${player} ${destination}`}
-    ></div>
+      className={`flex items-center justify-center`}
+    ></div> :
+      <div
+        style={{ width: cellSize, height: cellSize }}
+        className={`flex items-center justify-center ${top} ${right} ${bottom} ${left} ${player} ${destination}`}
+      ></div>
   );
 });
 

@@ -6,6 +6,7 @@ import StepPlayPause from "./buttons/StepPlayPause";
 import StepForward from "./buttons/StepForward";
 import StepStart from "./buttons/StepStart";
 import StepFinish from "./buttons/StepFinish";
+import ShowHideEmptyCell from "./buttons/ShowHideEmpty";
 
 interface PlayPauseProps {
     isPlaying: boolean;
@@ -25,6 +26,7 @@ const VisualizeTopbar: FC<PlayPauseProps> = ({ isPlaying, onTogglePlay, onStepBa
             <StepPlayPause isPlaying={isPlaying} onTogglePlay={onTogglePlay} />
             <StepForward isPlaying={isPlaying} onStepForward={onStepForward} />
             <StepFinish isPlaying={isPlaying} onStepFinish={onFinish} />
+            <ShowHideEmptyCell />
             <Downloader />
         </div>
     </div>
