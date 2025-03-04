@@ -8,7 +8,7 @@ import { useResultStore } from '@/store/resultStore';
 import { useDimensionsStore } from '@/store/dimensionsStore';
 
 const useStepHandler = () => {
-    const { isConstructive, maze: finalMaze, mazeSteps } = useResultStore((state) => state.mazeResult);
+    const { isConstructive, maze: finalMaze, mazeSteps } = useResultStore(state => state.mazeResult);
     const { height, width } = useDimensionsStore();
     const [maze, setMaze] = useState(() =>
         isConstructive ? createEmptyGrid(height, width) : createFullGrid(height, width)
@@ -37,12 +37,12 @@ const useStepHandler = () => {
     const handleGoFinish = () => {
         setMaze(finalMaze);
         stepIndex.current = mazeSteps.length;
-    }
+    };
 
     const handleGoStart = () => {
         setMaze(isConstructive ? createEmptyGrid(height, width) : createFullGrid(height, width));
         stepIndex.current = 0;
-    }
+    };
 
     const handlePrevStep = () => {
         if (stepIndex.current <= 0) return;
