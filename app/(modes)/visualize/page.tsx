@@ -17,7 +17,10 @@ const VisualizePage = () => {
 
   const { maze, handleNextStep, handlePrevStep, handleGoStart, handleGoFinish, currentStep } = useStepHandler();
 
-  const toggleDirection = () => setDirection(prev => prev === "forward" ? "reversed" : "forward");
+  const toggleDirection = () => {
+    setIsPlaying(true);
+    setDirection(prev => prev === "forward" ? "reversed" : "forward");
+  }
   const togglePlay = () => setIsPlaying(prev => !prev);
 
   const performStep = useCallback(() => {
@@ -43,7 +46,8 @@ const VisualizePage = () => {
 
   useEffect(() => {
     setIsPlaying(true);
-  }, [mazeSteps, direction]);
+    setDirection("forward");
+  }, [mazeSteps]);
 
   return (
     <div className="flex flex-col h-screen">

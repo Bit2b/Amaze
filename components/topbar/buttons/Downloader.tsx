@@ -1,5 +1,5 @@
 import { useDownloadGridStore } from '@/store/downloadStore';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas-pro';
 import { Download } from 'lucide-react';
 
 export const Downloader = () => {
