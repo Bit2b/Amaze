@@ -19,7 +19,7 @@ interface PlayPauseProps {
 const SolverTopbar: React.FC<PlayPauseProps> = ({ isPlaying, onTogglePlay, onStepBack, onStepForward, onStart, onFinish }) => {
   return (
     <div className="flex justify-center my-8">
-      <div className="flex gap-4 p-2 rounded-md w-fit bg-secondary/40">
+      <div className="flex gap-4 p-2 rounded-md w-fit bg-primary/10 dark:bg-secondary/40">
         <GoBackButton />
         <Separator orientation='vertical' />
         <StepStart isPlaying={isPlaying} onStepStart={onStart} />
