@@ -4,11 +4,11 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
+    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "../../ui/select";
 import { GameLevel } from "@/types";
-import { SelectLabel } from "@radix-ui/react-select";
 
 export default function GameLevelSelect() {
     const { currentGameLevel, gameLevels, setCurrentGameLevel } = useGameLevelStore();
