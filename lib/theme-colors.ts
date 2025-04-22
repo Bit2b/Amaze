@@ -96,7 +96,7 @@ const themes = {
       foreground: '210 40% 98%',
       card: '223 9.8% 10%',
       cardForeground: '210 40% 98%',
-      popover: '0 0% 9%',
+      popover: '223 9.8% 10%',
       popoverForeground: '210 40% 98%',
       primary: '217.2 91.2% 59.8%',
       primaryForeground: '222.2 47.4% 11.2%',
