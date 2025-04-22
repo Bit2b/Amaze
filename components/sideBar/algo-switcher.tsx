@@ -1,14 +1,14 @@
 "use client";
 
-import * as React from "react";
-import { ChevronsUpDown, TreePine, Trees } from "lucide-react"; // Import the Dice icon
-
+import { ChevronsUpDown, TreePine, Trees } from "lucide-react";
+import { useAlgorithmStore } from "@/store/algorithmStore";
+import { MazeAlgorithm } from "@/types";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -17,13 +17,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useAlgorithmStore } from "@/store/algorithmStore";
-import { MazeAlgorithm } from "@/types";
 
 export function AlgorithmSwitcher() {
   const { isMobile } = useSidebar();
   const setCurrentAlgorithm = useAlgorithmStore((state) => state.setCurrentAlgorithm);
-  const [activeAlgorithm, setActiveAlgorithm] = React.useState<MazeAlgorithm>(MazeAlgorithm.RECURSIVE_BACKTRACKING);
+  const [activeAlgorithm, setActiveAlgorithm] = useState<MazeAlgorithm>(MazeAlgorithm.RECURSIVE_BACKTRACKING);
 
   const handleAlgorithmChange = (algorithm: MazeAlgorithm) => {
     setActiveAlgorithm(algorithm); // Update local active algorithm
@@ -74,7 +72,6 @@ export function AlgorithmSwitcher() {
                 {algorithm}
               </DropdownMenuItem>
             ))}
-            <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

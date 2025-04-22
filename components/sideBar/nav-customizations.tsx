@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Settings2 } from "lucide-react"
 
 import {
@@ -9,7 +10,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import Link from "next/link"
 
 const customizations = [
   {

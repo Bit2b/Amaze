@@ -1,15 +1,13 @@
 "use client";
 
-import * as React from "react";
-import { Blocks, ChevronsUpDown, Gamepad, LayoutPanelTop, Route } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Blocks, ChevronsUpDown, Gamepad, LayoutPanelTop, Route } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -97,7 +95,6 @@ export function ModeSwitcher() {
                 </Link>
               </DropdownMenuItem>
             ))}
-            <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

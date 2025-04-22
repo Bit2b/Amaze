@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
-import { SidebarMenuButton } from "@/components/ui/sidebar";
 import Link from "next/link";
 import Image from "next/image";
+import { SidebarMenuButton } from "@/components/ui/sidebar";
 
 const SidebarLogo = () => {
   return (
