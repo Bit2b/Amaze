@@ -15,6 +15,10 @@ const CellRenderer: React.FC<CellProps> = memo(({ value }) => {
   const destination = value & 32 ? "bg-chart-5" : "";
   const { cellSize } = useDimensionsStore();
   const showEmptyGrid = useShowEmptyCellStore((state) => state.showEmptyCell);
+  let emptyCell = 'bg-background';
+  if (player || destination) {
+    emptyCell = '';
+  }
 
   return (
     value === 15 && showEmptyGrid ? <div
@@ -23,7 +27,7 @@ const CellRenderer: React.FC<CellProps> = memo(({ value }) => {
     ></div> :
       <div
         style={{ width: cellSize, height: cellSize }}
-        className={`flex items-center justify-center ${top} ${right} ${bottom} ${left} ${player} ${destination}`}
+        className={`flex items-center justify-center ${top} ${right} ${bottom} ${left} ${player} ${destination} ${emptyCell}`}
       ></div>
   );
 });

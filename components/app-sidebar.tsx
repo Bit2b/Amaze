@@ -1,9 +1,8 @@
 "use client"
 
-import * as React from "react"
-
 import { NavCustomizations } from "@/components/sideBar/nav-customizations"
 import { ModeSwitcher } from "@/components/sideBar/mode-switcher"
+import { AlgorithmSwitcher } from "./sideBar/algo-switcher"
 import SidebarLogo from "./sideBar/SidebarLogo"
 import {
   Sidebar,
@@ -11,7 +10,6 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { AlgorithmSwitcher } from "./sideBar/algo-switcher"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (

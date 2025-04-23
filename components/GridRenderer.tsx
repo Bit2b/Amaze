@@ -9,7 +9,7 @@ type GridProps = {
 const GridRenderer: React.FC<GridProps> = ({ grid }) => {
   return (
     <DownloadableGridWrapper>
-      <div className="bg-background p-4 flex flex-col items-center">
+      <div className="p-4 bg-primary/10 dark:bg-sidebar flex flex-col items-center">
         {grid.map((row, rowIndex) => (
           <div key={rowIndex} className="flex">
             {row.map((cell, cellIndex) => (
