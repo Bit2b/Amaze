@@ -1,11 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import GridRenderer from '@/components/GridRenderer';
 import { useResultStore } from '@/store/resultStore';
 import { useDimensionsStore } from '@/store/dimensionsStore';
-import VisualizeTopbar from '@/components/topbar/VisualizeTopbar';
+import VisualizeTopbar from '@/app/(mazeSeeded)/visualize/VisualizeTopbar';
 import useStepHandler from '@/hooks/useStepHandler';
+import GenerateRenderer from '@/components/GenerateRenderer';
 
 type Direction = "forward" | "reversed";
 
@@ -61,7 +61,7 @@ const VisualizePage = () => {
         onStart={handleGoStart}
         onFinish={handleGoFinish}
       />
-      <GridRenderer grid={maze} />
+      <GenerateRenderer grid={maze} />
     </div>
   );
 };

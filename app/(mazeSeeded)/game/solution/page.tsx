@@ -3,15 +3,15 @@
 import { useEffect, useState } from 'react';
 import { type Cell } from '@/types';
 import { useDimensionsStore } from '@/store/dimensionsStore';
-import PathRenderer from '@/components/PathRenderer';
+import SolutionRenderer from './SolutionRenderer';
 import useSolutionStepHandler from '@/hooks/useSolutionStepHandler';
 import { useResultStore } from '@/store/resultStore';
 import { useGameLevelStore } from '@/store/gameLevelStore';
 import { findSourceAndDestination } from '@/utils/gameUtils';
 import pathBfs from '@/algorithms/mazeSolver/pathBfs';
-import SolverTopbar from '@/components/topbar/SolverTopbar';
+import SolutionTopbar from '@/app/(mazeSeeded)/game/solution/SolutionTopbar';
 
-const SolutionRenderer = () => {
+const Solution = () => {
     const { height, width, speed } = useDimensionsStore();
     const mazeResult = useResultStore((state) => state.mazeResult.maze);
     const gameLevel = useGameLevelStore((state) => state.currentGameLevel);
@@ -27,7 +27,7 @@ const SolutionRenderer = () => {
         }
     }, [gameLevel, mazeResult, height, width]);
 
-    const { maze, handleNextStep, handlePrevStep, handleGoStart, handleGoFinish, currentStep } = useSolutionStepHandler({ path });
+    const { handleNextStep, handlePrevStep, handleGoStart, handleGoFinish, currentStep } = useSolutionStepHandler({ path });
 
     //running the path animation
     useEffect(() => {
@@ -52,7 +52,7 @@ const SolutionRenderer = () => {
 
     return (
         <div className="flex flex-col h-screen">
-            <SolverTopbar
+            <SolutionTopbar
                 isPlaying={isRunning}
                 onTogglePlay={() => currentStep < path.length && setIsRunning(!isRunning)}
                 onStepBack={handlePrevStep}
@@ -60,9 +60,9 @@ const SolutionRenderer = () => {
                 onStart={handleGoStart}
                 onFinish={handleGoFinish}
             />
-            <PathRenderer grid={maze} />
+            <SolutionRenderer path={path} currentIndex={currentStep} />
         </div>
     )
 };
 
-export default SolutionRenderer;
+export default Solution;

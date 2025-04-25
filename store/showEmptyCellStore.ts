@@ -6,7 +6,7 @@ interface ShowEmptyCellStoreProps {
 }
 
 export const useShowEmptyCellStore = create<ShowEmptyCellStoreProps>((set) => ({
-  showEmptyCell: false,
+  showEmptyCell: true,
   toggleShowEmptyCell: () =>
     set((state) => ({ showEmptyCell: !state.showEmptyCell })),
 }));

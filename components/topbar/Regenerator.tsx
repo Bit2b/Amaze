@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import MazeAlgorithmSeeder from "../../MazeAlgorithmSeeder";
+import MazeAlgorithmSeeder from "../MazeAlgorithmSeeder";
 import { RefreshCw } from "lucide-react";
 
 const Regenerator = () => {

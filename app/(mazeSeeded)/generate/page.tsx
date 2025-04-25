@@ -1,7 +1,7 @@
 'use client';
 
-import GridRenderer from "@/components/GridRenderer";
-import Topbar from "@/components/topbar/GeneratorTopbar";
+import GenerateRenderer from "@/components/GenerateRenderer";
+import Topbar from "@/app/(mazeSeeded)/generate/GeneratorTopbar";
 import { useResultStore } from "@/store/resultStore";
 
 const App: React.FC = () => {
@@ -9,7 +9,7 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col h-screen">
       <Topbar />
-      <GridRenderer grid={maze} />
+      <GenerateRenderer grid={maze} />
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import { Downloader } from "./buttons/Downloader";
-import GoBackButton from "./buttons/GoBack";
-import StepStart from "./buttons/StepStart";
-import StepPlayPause from "./buttons/StepPlayPause";
-import StepFinish from "./buttons/StepFinish";
-import StepBack from "./buttons/StepBack";
-import StepForward from "./buttons/StepForward";
-import { Separator } from "../ui/separator";
+import { Downloader } from "../../../../components/topbar/Downloader";
+import GoBackButton from "../../../../components/topbar/GoBack";
+import StepStart from "../../../../components/topbar/StepStart";
+import StepPlayPause from "../../../../components/topbar/StepPlayPause";
+import StepFinish from "../../../../components/topbar/StepFinish";
+import StepBack from "../../../../components/topbar/StepBack";
+import StepForward from "../../../../components/topbar/StepForward";
+import { Separator } from "../../../../components/ui/separator";
 
 interface PlayPauseProps {
   isPlaying: boolean;
@@ -16,7 +16,7 @@ interface PlayPauseProps {
   onFinish: () => void;
 }
 
-const SolverTopbar: React.FC<PlayPauseProps> = ({ isPlaying, onTogglePlay, onStepBack, onStepForward, onStart, onFinish }) => {
+const SolutionTopbar: React.FC<PlayPauseProps> = ({ isPlaying, onTogglePlay, onStepBack, onStepForward, onStart, onFinish }) => {
   return (
     <div className="flex justify-center my-8">
       <div className="flex gap-4 p-2 rounded-md w-fit bg-primary/10 dark:bg-secondary/40">
@@ -34,4 +34,4 @@ const SolverTopbar: React.FC<PlayPauseProps> = ({ isPlaying, onTogglePlay, onSte
   );
 };
 
-export default SolverTopbar;
+export default SolutionTopbar;

@@ -7,7 +7,7 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-} from "../../ui/select";
+} from "../ui/select";
 import { GameLevel } from "@/types";
 
 export default function GameLevelSelect() {

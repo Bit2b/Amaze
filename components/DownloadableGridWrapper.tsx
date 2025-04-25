@@ -17,7 +17,7 @@ const DownloadableGridWrapper: React.FC<DownloadableGridWrapperProps> = ({ child
   }, [gridRef, setDownloadGridRef]);
 
   return (
-    <div ref={gridRef} className="bg-primary/10 dark:bg-sidebar rounded-md p-4">
+    <div ref={gridRef}>
       {children}
     </div>
   );

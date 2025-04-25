@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import ThemeDataProvider from "@/context/theme-data-provider";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { Metadata } from "next";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,8 +40,9 @@ export default function RootLayout({
             <SidebarProvider>
               <AppSidebar />
               <main className="flex-1 flex flex-col">
-                <SidebarTrigger className="absolute"/>
+                <SidebarTrigger className="absolute" />
                 <div className="flex-1 flex justify-center items-center">
+                  <Toaster />
                   {children}
                 </div>
               </main>

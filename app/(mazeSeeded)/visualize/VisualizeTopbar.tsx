@@ -1,14 +1,13 @@
-import type { FC } from "react";
-import { Downloader } from "./buttons/Downloader";
-import Regenerator from "./buttons/Regenerator";
-import StepBack from "./buttons/StepBack";
-import StepPlayPause from "./buttons/StepPlayPause";
-import StepForward from "./buttons/StepForward";
-import StepStart from "./buttons/StepStart";
-import StepFinish from "./buttons/StepFinish";
-import ShowHideEmptyCell from "./buttons/ShowHideEmpty";
-import StepReverse from "./buttons/StepReverse";
-import { Separator } from "../ui/separator";
+import { Downloader } from "../../../components/topbar/Downloader";
+import Regenerator from "../../../components/topbar/Regenerator";
+import StepBack from "../../../components/topbar/StepBack";
+import StepPlayPause from "../../../components/topbar/StepPlayPause";
+import StepForward from "../../../components/topbar/StepForward";
+import StepStart from "../../../components/topbar/StepStart";
+import StepFinish from "../../../components/topbar/StepFinish";
+import ShowHideEmptyCell from "../../../components/topbar/ShowHideEmpty";
+import StepReverse from "../../../components/topbar/StepReverse";
+import { Separator } from "../../../components/ui/separator";
 
 interface PlayPauseProps {
     isPlaying: boolean;
@@ -21,7 +20,7 @@ interface PlayPauseProps {
     onFinish: () => void;
 }
 
-const VisualizeTopbar: FC<PlayPauseProps> = ({ isPlaying, direction, onTogglePlay, onToggleDirection, onStepBack, onStepForward, onStart, onFinish }) => (
+const VisualizeTopbar: React.FC<PlayPauseProps> = ({ isPlaying, direction, onTogglePlay, onToggleDirection, onStepBack, onStepForward, onStart, onFinish }) => (
     <div className="flex justify-center my-8">
         <div className="flex gap-4 p-2 rounded-md w-fit bg-primary/10 dark:bg-secondary/40">
             <Regenerator />
