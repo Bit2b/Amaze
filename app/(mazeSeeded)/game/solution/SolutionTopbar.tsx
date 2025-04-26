@@ -1,11 +1,11 @@
-import { Downloader } from "../../../../components/topbar/Downloader";
-import GoBackButton from "../../../../components/topbar/GoBack";
-import StepStart from "../../../../components/topbar/StepStart";
-import StepPlayPause from "../../../../components/topbar/StepPlayPause";
-import StepFinish from "../../../../components/topbar/StepFinish";
-import StepBack from "../../../../components/topbar/StepBack";
-import StepForward from "../../../../components/topbar/StepForward";
-import { Separator } from "../../../../components/ui/separator";
+import { Downloader } from "@/components/topbar/Downloader";
+import GoBackButton from "@/components/topbar/GoBack";
+import StepStart from "@/components/topbar/StepStart";
+import StepPlayPause from "@/components/topbar/StepPlayPause";
+import StepFinish from "@/components/topbar/StepFinish";
+import StepBack from "@/components/topbar/StepBack";
+import StepForward from "@/components/topbar/StepForward";
+import { Separator } from "@/components/ui/separator";
 
 interface PlayPauseProps {
   isPlaying: boolean;

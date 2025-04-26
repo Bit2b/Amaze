@@ -3,62 +3,47 @@
 import { useResultStore } from '@/store/resultStore';
 import GameTopbar from '@/app/(mazeSeeded)/game/GameTopbar';
 import React, { useEffect, useState } from 'react';
-import { Cell } from '@/types';
-import { useGameLevelStore } from '@/store/gameLevelStore';
 import { useDimensionsStore } from '@/store/dimensionsStore';
-import { findSourceAndDestination } from '@/utils/gameUtils';
 import GameRenderer from './GameRenderer';
+import { usePositionStore } from '@/store/gamePositionStore';
 
 const Mazes = () => {
   const grid = useResultStore((state) => state.mazeResult.maze);
   const { height, width } = useDimensionsStore();
-  const [location, setLocation] = useState<Cell>({ x: 0, y: 0 });
-  const [destination, setDestination] = useState<Cell>({
-    x: height - 1,
-    y: width - 1
-  });
-  const gameLevel = useGameLevelStore((state) => state.currentGameLevel);
+  const { setCurrentPosition, currentPosition, destination } = usePositionStore();
   const [isGameWon, setIsGameWon] = useState<boolean>(false);
 
   const movePlayer = (event: React.KeyboardEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (isGameWon) return;
 
-    setLocation((prev) => {
-      const newLocation = { ...prev };
-      // Check if we can move in the direction (wall doesn't exist)
-      if (event.key === 'ArrowUp' && prev.x > 0 && !(grid[prev.x][prev.y] & 1)) {
-        newLocation.x -= 1;
-      }
-      if (event.key === 'ArrowRight' && prev.y < width - 1 && !(grid[prev.x][prev.y] & 2)) {
-        newLocation.y += 1;
-      }
-      if (event.key === 'ArrowDown' && prev.x < height - 1 && !(grid[prev.x][prev.y] & 4)) {
-        newLocation.x += 1;
-      }
-      if (event.key === 'ArrowLeft' && prev.y > 0 && !(grid[prev.x][prev.y] & 8)) {
-        newLocation.y -= 1;
-      }
-      return newLocation;
-    });
+    const { x, y } = currentPosition;
+    let newX = x;
+    let newY = y;
+
+    if (event.key === 'ArrowUp' && x > 0 && !(grid[x][y] & 1)) {
+      newX -= 1;
+    }
+    if (event.key === 'ArrowRight' && y < width - 1 && !(grid[x][y] & 2)) {
+      newY += 1;
+    }
+    if (event.key === 'ArrowDown' && x < height - 1 && !(grid[x][y] & 4)) {
+      newX += 1;
+    }
+    if (event.key === 'ArrowLeft' && y > 0 && !(grid[x][y] & 8)) {
+      newY -= 1;
+    }
+
+    setCurrentPosition({ x: newX, y: newY });
   };
 
   useEffect(() => {
-    if (location.x === destination.x && location.y === destination.y) {
+    if (currentPosition.x === destination.x && currentPosition.y === destination.y) {
       setIsGameWon(true);
+    } else {
+      setIsGameWon(false);
     }
-  }, [location, destination]);
-
-  // Reset game when grid or level changes
-  useEffect(() => {
-    setIsGameWon(false);
-
-    if (grid && grid.length > 0) {
-      const { source, destination } = findSourceAndDestination(height, width, gameLevel, grid);
-      setLocation(source);
-      setDestination(destination);
-    }
-  }, [grid, gameLevel, height, width]);
+  }, [currentPosition, destination]);
 
   return (
     <div
@@ -70,7 +55,7 @@ const Mazes = () => {
       {grid && grid.length > 0 && (
         <GameRenderer
           grid={grid}
-          location={location}
+          location={currentPosition}
           destination={destination}
         />
       )}

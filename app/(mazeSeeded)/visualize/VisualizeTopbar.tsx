@@ -1,13 +1,13 @@
-import { Downloader } from "../../../components/topbar/Downloader";
-import Regenerator from "../../../components/topbar/Regenerator";
-import StepBack from "../../../components/topbar/StepBack";
-import StepPlayPause from "../../../components/topbar/StepPlayPause";
-import StepForward from "../../../components/topbar/StepForward";
-import StepStart from "../../../components/topbar/StepStart";
-import StepFinish from "../../../components/topbar/StepFinish";
-import ShowHideEmptyCell from "../../../components/topbar/ShowHideEmpty";
-import StepReverse from "../../../components/topbar/StepReverse";
-import { Separator } from "../../../components/ui/separator";
+import { Downloader } from "@/components/topbar/Downloader";
+import Regenerator from "@/components/topbar/Regenerator";
+import StepBack from "@/components/topbar/StepBack";
+import StepPlayPause from "@/components/topbar/StepPlayPause";
+import StepForward from "@/components/topbar/StepForward";
+import StepStart from "@/components/topbar/StepStart";
+import StepFinish from "@/components/topbar/StepFinish";
+import ShowHideEmptyCell from "@/components/topbar/ShowHideEmpty";
+import StepReverse from "@/components/topbar/StepReverse";
+import { Separator } from "@/components/ui/separator";
 
 interface PlayPauseProps {
     isPlaying: boolean;

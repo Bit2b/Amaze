@@ -6,34 +6,35 @@ import { useDimensionsStore } from '@/store/dimensionsStore';
 import SolutionRenderer from './SolutionRenderer';
 import useSolutionStepHandler from '@/hooks/useSolutionStepHandler';
 import { useResultStore } from '@/store/resultStore';
-import { useGameLevelStore } from '@/store/gameLevelStore';
-import { findSourceAndDestination } from '@/utils/gameUtils';
 import pathBfs from '@/algorithms/mazeSolver/pathBfs';
 import SolutionTopbar from '@/app/(mazeSeeded)/game/solution/SolutionTopbar';
+import { usePositionStore } from '@/store/gamePositionStore';
 
 const Solution = () => {
-    const { height, width, speed } = useDimensionsStore();
+    const { speed } = useDimensionsStore();
     const mazeResult = useResultStore((state) => state.mazeResult.maze);
-    const gameLevel = useGameLevelStore((state) => state.currentGameLevel);
+    const { source, destination } = usePositionStore();
     const [path, setPath] = useState<Cell[]>([]);
     const [isRunning, setIsRunning] = useState(true);
 
-    //setting the path
+    const {
+        handleNextStep,
+        handlePrevStep,
+        handleGoStart,
+        handleGoFinish,
+        currentStep,
+    } = useSolutionStepHandler({ path });
+
     useEffect(() => {
-        if (mazeResult.length > 0) {
-            const { source, destination } = findSourceAndDestination(height, width, gameLevel, mazeResult);
-            const newPath = pathBfs(mazeResult, source, destination);
-            setPath(newPath);
-        }
-    }, [gameLevel, mazeResult, height, width]);
+        const newPath = pathBfs(mazeResult, source, destination);
+        setPath(newPath);
+    }, [mazeResult, source, destination]);
 
-    const { handleNextStep, handlePrevStep, handleGoStart, handleGoFinish, currentStep } = useSolutionStepHandler({ path });
-
-    //running the path animation
+    // Animate the path walking
     useEffect(() => {
         if (!isRunning) return;
 
-        const current = setInterval(() => {
+        const intervalId = setInterval(() => {
             if (currentStep >= path.length) {
                 setIsRunning(false);
                 return;
@@ -41,14 +42,8 @@ const Solution = () => {
             handleNextStep();
         }, 5000 / speed);
 
-        return () => clearInterval(current);
-
-    }, [isRunning, path, speed, currentStep, handleNextStep]);
-
-    //when the new path is set, start the animation
-    useEffect(() => {
-        setIsRunning(true);
-    }, [path]);
+        return () => clearInterval(intervalId);
+    }, [isRunning, speed, path.length, currentStep, handleNextStep]);
 
     return (
         <div className="flex flex-col h-screen">
@@ -62,7 +57,7 @@ const Solution = () => {
             />
             <SolutionRenderer path={path} currentIndex={currentStep} />
         </div>
-    )
+    );
 };
 
 export default Solution;

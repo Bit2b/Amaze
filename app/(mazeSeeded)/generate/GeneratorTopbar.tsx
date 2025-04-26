@@ -1,7 +1,7 @@
-import { Separator } from "../../../components/ui/separator";
-import { Downloader } from "../../../components/topbar/Downloader";
-import MazeChanger from "../../../components/topbar/MazeChanger";
-import Regenerator from "../../../components/topbar/Regenerator";
+import { Separator } from "@/components/ui/separator";
+import { Downloader } from "@/components/topbar/Downloader";
+import MazeChanger from "@/components/topbar/MazeChanger";
+import Regenerator from "@/components/topbar/Regenerator";
 
 const GeneratorTopbar = () => {
   return (

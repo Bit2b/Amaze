@@ -7,7 +7,9 @@ export default function farthestFromSource(
   source: Cell
 ): Cell {
   const height = maze.length;
+  if (!height) return { x: 0, y: 0 };
   const width = maze[0].length;
+  if (!width) return { x: 0, y: 0 };
   const visited = Array.from({ length: height }, () =>
     Array(width).fill(false)
   );
