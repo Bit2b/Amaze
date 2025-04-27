@@ -4,11 +4,12 @@ import GameLevelSelect from "@/components/topbar/GameLevelSelect";
 import Regenerator from "@/components/topbar/Regenerator";
 import Solver from "@/components/topbar/Solver";
 import ResetGame from "@/components/topbar/ResetGame";
+import SeeGameTutorial from "@/components/topbar/SeeGameTutorial";
 
 const GameTopbar = () => {
     return (
         <div className="flex justify-center my-8">
-            <div className="flex gap-4 p-2 rounded-md w-fit bg-primary/10 dark:bg-secondary/40">
+            <div className="flex gap-2 p-2 rounded-md w-fit bg-primary/10 dark:bg-secondary/40">
                 <Regenerator />
                 <Separator orientation='vertical' />
                 <ResetGame />
@@ -16,6 +17,8 @@ const GameTopbar = () => {
                 <Solver />
                 <Separator orientation='vertical' />
                 <Downloader />
+                <Separator orientation='vertical' />
+                <SeeGameTutorial />
                 <Separator orientation='vertical' />
                 <GameLevelSelect />
             </div>

@@ -22,7 +22,7 @@ interface PlayPauseProps {
 
 const VisualizeTopbar: React.FC<PlayPauseProps> = ({ isPlaying, direction, onTogglePlay, onToggleDirection, onStepBack, onStepForward, onStart, onFinish }) => (
     <div className="flex justify-center my-8">
-        <div className="flex gap-4 p-2 rounded-md w-fit bg-primary/10 dark:bg-secondary/40">
+        <div className="flex gap-2 p-2 rounded-md w-fit bg-primary/10 dark:bg-secondary/40">
             <Regenerator />
             <Separator orientation='vertical' />
             <StepReverse direction={direction} onToggleDirection={onToggleDirection} />

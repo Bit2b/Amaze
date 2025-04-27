@@ -26,7 +26,7 @@ export const IconButton = ({
           variant={'ghost'}
           size={'icon'}
           onClick={onClick}
-          className={className}
+          className={`cursor-pointer ${className}`}
         >
           {cloneElement(children, {
             ...children.props,

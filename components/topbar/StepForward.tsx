@@ -39,6 +39,7 @@ const StepForward: React.FC<StepForwardProps> = ({ onStepForward, isPlaying }) =
           aria-label="Step Forward"
           variant="ghost"
           size="icon"
+          className="cursor-pointer"
         >
           <ChevronRight className="text-primary" />
         </Button>

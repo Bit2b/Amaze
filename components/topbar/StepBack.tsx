@@ -39,6 +39,7 @@ const StepBack: React.FC<StepBackProps> = ({ onStepBack, isPlaying }) => {
           aria-label="Step Back"
           variant="ghost"
           size="icon"
+          className="cursor-pointer"
         >
           <ChevronLeft className="text-primary" />
         </Button>

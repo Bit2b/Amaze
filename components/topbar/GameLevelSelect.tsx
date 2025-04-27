@@ -45,15 +45,16 @@ export default function GameLevelSelect() {
         <Select
             value={currentGameLevel}
             onValueChange={handleLevelChange}
+
         >
-            <SelectTrigger className="w-[150px] text-foreground border-sm border-primary">
+            <SelectTrigger className="w-[16ch] text-foreground border-sm border-primary cursor-pointer">
                 <SelectValue placeholder="Select difficulty" />
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
-                    <SelectLabel className="text-xs text-muted-foreground px-2">Game Levels</SelectLabel>
+                    <SelectLabel className="text-xs text-muted-foreground px-2 cursor-pointer">Game Levels</SelectLabel>
                     {GameLevelOptions.map((level) => (
-                        <SelectItem key={level} value={level}>
+                        <SelectItem key={level} value={level} className=" cursor-pointer">
                             {level}
                         </SelectItem>
                     ))}
