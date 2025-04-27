@@ -1,47 +1,53 @@
 import { ChevronLeft } from "lucide-react";
 import { useRef } from "react";
+import { Button } from "../ui/button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 
 interface StepBackProps {
-    isPlaying: boolean;
-    onStepBack: () => void;
+  isPlaying: boolean;
+  onStepBack: () => void;
 }
 
 const StepBack: React.FC<StepBackProps> = ({ onStepBack, isPlaying }) => {
-    const holdInterval = useRef<NodeJS.Timeout | null>(null);
+  const holdInterval = useRef<NodeJS.Timeout | null>(null);
 
-    const handleMouseDown = () => {
-        onStepBack();
-        holdInterval.current = setInterval(() => {
-            onStepBack();
-        }, 150);
-    };
+  const handleMouseDown = () => {
+    onStepBack();
+    holdInterval.current = setInterval(() => {
+      onStepBack();
+    }, 150);
+  };
 
-    const handleMouseUp = () => {
-        if (holdInterval.current) {
-            clearInterval(holdInterval.current);
-            holdInterval.current = null;
-        }
-    };
+  const handleMouseUp = () => {
+    if (holdInterval.current) {
+      clearInterval(holdInterval.current);
+      holdInterval.current = null;
+    }
+  };
 
-    return (
-        isPlaying ? <div className="h-7 w-9" />
-            : <div className="relative group">
-                <button
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
-                    onTouchStart={handleMouseDown}
-                    onTouchEnd={handleMouseUp}
-                    aria-label="Step Back"
-                    className="p-2 hover:bg-accent rounded-md transition-colors"
-                >
-                    <ChevronLeft className="h-5 w-5 text-primary" />
-                </button>
-                <span className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground text-sm px-2 py-1 rounded-lg shadow-md transition-opacity duration-300 pointer-events-none">
-                    Step Back
-                </span>
-            </div>
-    );
+  return isPlaying ? (
+    <div className="h-7 w-9" />
+  ) : (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
+          aria-label="Step Back"
+          variant="ghost"
+          size="icon"
+        >
+          <ChevronLeft className="text-primary" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="text-accent-foreground bg-accent">
+        Step Back
+      </TooltipContent>
+    </Tooltip>
+  );
 };
 
 export default StepBack;

@@ -1,47 +1,53 @@
 import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
+import { Button } from "../ui/button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 
 interface StepForwardProps {
-    isPlaying: boolean;
-    onStepForward: () => void;
+  isPlaying: boolean;
+  onStepForward: () => void;
 }
 
-const StepForward: React.FC<StepForwardProps> = ({ isPlaying, onStepForward }) => {
-    const holdInterval = useRef<NodeJS.Timeout | null>(null);
+const StepForward: React.FC<StepForwardProps> = ({ onStepForward, isPlaying }) => {
+  const holdInterval = useRef<NodeJS.Timeout | null>(null);
 
-    const handleMouseDown = () => {
-        onStepForward();
-        holdInterval.current = setInterval(() => {
-            onStepForward();
-        }, 150);
-    };
+  const handleMouseDown = () => {
+    onStepForward();
+    holdInterval.current = setInterval(() => {
+      onStepForward();
+    }, 150);
+  };
 
-    const handleMouseUp = () => {
-        if (holdInterval.current) {
-            clearInterval(holdInterval.current);
-            holdInterval.current = null;
-        }
-    };
+  const handleMouseUp = () => {
+    if (holdInterval.current) {
+      clearInterval(holdInterval.current);
+      holdInterval.current = null;
+    }
+  };
 
-    return (
-        isPlaying ? <div className="h-7 w-9" />
-            : <div className="relative group">
-                <button
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
-                    onTouchStart={handleMouseDown}
-                    onTouchEnd={handleMouseUp}
-                    aria-label="Step Forward"
-                    className="p-2 hover:bg-accent rounded-md transition-colors"
-                >
-                    <ChevronRight className="h-5 w-5 text-primary" />
-                </button>
-                <span className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground text-sm px-2 py-1 rounded-lg shadow-md transition-opacity duration-300 pointer-events-none">
-                    Step Forward
-                </span>
-            </div>
-    );
+  return isPlaying ? (
+    <div className="h-7 w-9" />
+  ) : (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
+          aria-label="Step Forward"
+          variant="ghost"
+          size="icon"
+        >
+          <ChevronRight className="text-primary" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="text-accent-foreground bg-accent">
+        Step Forward
+      </TooltipContent>
+    </Tooltip>
+  );
 };
 
 export default StepForward;

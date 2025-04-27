@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useDimensionsStore } from '@/store/dimensionsStore';
 import GameRenderer from './GameRenderer';
 import { usePositionStore } from '@/store/gamePositionStore';
+import GameTutorial from '@/components/gameTutorial';
 
 const Mazes = () => {
   const grid = useResultStore((state) => state.mazeResult.maze);
@@ -21,16 +22,16 @@ const Mazes = () => {
     let newX = x;
     let newY = y;
 
-    if (event.key === 'ArrowUp' && x > 0 && !(grid[x][y] & 1)) {
+    if (['ArrowUp', 'w', 'W'].includes(event.key) && x > 0 && !(grid[x][y] & 1)) {
       newX -= 1;
     }
-    if (event.key === 'ArrowRight' && y < width - 1 && !(grid[x][y] & 2)) {
+    if (['ArrowRight', 'd', 'D'].includes(event.key) && y < width - 1 && !(grid[x][y] & 2)) {
       newY += 1;
     }
-    if (event.key === 'ArrowDown' && x < height - 1 && !(grid[x][y] & 4)) {
+    if (['ArrowDown', 's', 'S'].includes(event.key) && x < height - 1 && !(grid[x][y] & 4)) {
       newX += 1;
     }
-    if (event.key === 'ArrowLeft' && y > 0 && !(grid[x][y] & 8)) {
+    if (['ArrowLeft', 'a', 'A'].includes(event.key) && y > 0 && !(grid[x][y] & 8)) {
       newY -= 1;
     }
 
@@ -41,6 +42,7 @@ const Mazes = () => {
     if (currentPosition.x === destination.x && currentPosition.y === destination.y) {
       setIsGameWon(true);
     } else {
+      //just cause the topbar is setting current position after the first render
       setIsGameWon(false);
     }
   }, [currentPosition, destination]);
@@ -51,6 +53,7 @@ const Mazes = () => {
       onKeyDown={movePlayer}
       className='flex flex-col h-screen outline-none'
     >
+      <GameTutorial />
       <GameTopbar />
       {grid && grid.length > 0 && (
         <GameRenderer
