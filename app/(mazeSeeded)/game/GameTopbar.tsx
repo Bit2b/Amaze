@@ -5,6 +5,7 @@ import Regenerator from "@/components/topbar/Regenerator";
 import Solver from "@/components/topbar/Solver";
 import ResetGame from "@/components/topbar/ResetGame";
 import SeeGameTutorial from "@/components/topbar/SeeGameTutorial";
+import Stopwatch from "@/components/topbar/gameStopwatch";
 
 const GameTopbar = () => {
     return (
@@ -21,6 +22,8 @@ const GameTopbar = () => {
                 <SeeGameTutorial />
                 <Separator orientation='vertical' />
                 <GameLevelSelect />
+                <Separator orientation='vertical' />
+                <Stopwatch />
             </div>
         </div>
     );
