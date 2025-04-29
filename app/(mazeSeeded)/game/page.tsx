@@ -23,7 +23,7 @@ const Mazes = () => {
   ));
   const stepsTaken = useRef(0);
 
-  console.log(gameStatus);
+  // console.log(gameStatus);
 
   const countVisitedCells = () => {
     if (!visitedRef.current) return 0;
@@ -75,24 +75,24 @@ const Mazes = () => {
     if (currentPosition.x === destination.x && currentPosition.y === destination.y) {
       setGameStatus('Won');
     }
+    if (currentPosition.x === source.x && currentPosition.y === source.y && gameStatus === 'Ready') {
+      stepsTaken.current = 0;
+      if (height && width) {
+        visitedRef.current = Array.from({ length: height }, () =>
+          Array.from({ length: width }, () => false)
+        );
+        // Mark starting position as visited
+        if (visitedRef.current && source) {
+          visitedRef.current[source.x][source.y] = true;
+        }
+      }
+    }
   }, [currentPosition, destination, gameStatus]);
 
   useEffect(() => {
     resetGame();
     setGameTries(1);
-    setGameStatus('Ready');
-    stepsTaken.current = 0;
-
-    if (height && width) {
-      visitedRef.current = Array.from({ length: height }, () =>
-        Array.from({ length: width }, () => false)
-      );
-      // Mark starting position as visited
-      if (visitedRef.current && source) {
-        visitedRef.current[source.x][source.y] = true;
-      }
-    }
-  }, [grid, source, destination]);
+  }, [grid]);
 
   return (
     <div

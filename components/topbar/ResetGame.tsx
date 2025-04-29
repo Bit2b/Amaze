@@ -5,10 +5,11 @@ import { useGameStore } from "@/store/gameStore";
 
 const ResetGame = () => {
   const { setCurrentPosition, source } = usePositionStore();
-  const { gameTries, setGameTime, setGameTries } = useGameStore();
+  const { gameTries, setGameStatus, setGameTime, setGameTries } = useGameStore();
   const onClickHandler = () => {
     setCurrentPosition(source);
     setGameTries(gameTries + 1);
+    setGameStatus('Ready');
     setGameTime(0);
   }
   return (
