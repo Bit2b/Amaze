@@ -1,15 +1,17 @@
 import DownloadableGridWrapper from "@/components/DownloadableGridWrapper";
 import GameLayer from "@/components/gridLayers/GameLayer";
 import GridLayer from "@/components/gridLayers/GridLayer";
+import VisitedLayer from "@/components/gridLayers/VisitedLayer";
 import { Cell } from "@/types";
 
 type GridProps = {
   grid: number[][];
+  visited: boolean[][];
   location: Cell;
   destination: Cell;
 };
 
-const GameRenderer: React.FC<GridProps> = ({ location, destination }) => {
+const GameRenderer: React.FC<GridProps> = ({ location, destination, visited }) => {
   return (
     <DownloadableGridWrapper>
       <div
@@ -19,6 +21,9 @@ const GameRenderer: React.FC<GridProps> = ({ location, destination }) => {
         <div className="p-8 bg-primary/10 dark:bg-sidebar flex flex-col items-center rounded-md">
           <div className="relative bg-background">
             <GridLayer />
+            <div className="absolute inset-0 pointer-events-none">
+              <VisitedLayer visited={visited} />
+            </div>
             <div className="absolute inset-0 pointer-events-none">
               <GameLayer source={location} destination={destination} />
             </div>

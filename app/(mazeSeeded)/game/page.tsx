@@ -6,9 +6,9 @@ import React, { useEffect, useRef } from 'react';
 import { useDimensionsStore } from '@/store/dimensionsStore';
 import GameRenderer from './GameRenderer';
 import { usePositionStore } from '@/store/gamePositionStore';
-import GameTutorial from '@/components/gameTutorial';
+import GameTutorial from '@/app/(mazeSeeded)/game/gameTutorial';
 import { useGameStore } from '@/store/gameStore';
-import ScoreCard from '@/components/ScoreCard';
+import ScoreCard from './ScoreCard';
 
 const Mazes = () => {
   const grid = useResultStore((state) => state.mazeResult.maze);
@@ -104,6 +104,7 @@ const Mazes = () => {
       <GameTopbar />
       {grid && grid.length > 0 && (
         <GameRenderer
+          visited={visitedRef.current}
           grid={grid}
           location={currentPosition}
           destination={destination}

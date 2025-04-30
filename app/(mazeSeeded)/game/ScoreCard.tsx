@@ -5,22 +5,20 @@ import {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-} from "./ui/dialog";
+} from "@/components/ui/dialog";
 import {
   Timer, Grid, Award, Trophy, GitBranch, Footprints,
   Gauge, Map, RefreshCw
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Separator } from "./ui/separator";
-
-// Import the necessary stores
+import { GameLevel } from "@/types";
 import { useAlgorithmStore } from "@/store/algorithmStore";
 import { useDimensionsStore } from "@/store/dimensionsStore";
 import { usePositionStore } from "@/store/gamePositionStore";
 import { useGameStore } from "@/store/gameStore";
 import { useResultStore } from "@/store/resultStore";
 import pathBfs from "@/algorithms/mazeSolver/pathBfs";
-import { GameLevel } from "@/types";
+import { Separator } from "@/components/ui/separator";
 
 interface ScoreCardProps {
   stepsTaken: number;
@@ -59,9 +57,9 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ stepsTaken, visitedCells }) => {
   useEffect(() => {
     const GameLevelOptions = Object.values(GameLevel);
     const savedLevel = localStorage.getItem('selectedGameLevel') as GameLevel;
-    
-    setGameLevel((savedLevel && GameLevelOptions.includes(savedLevel)) 
-      ? savedLevel 
+
+    setGameLevel((savedLevel && GameLevelOptions.includes(savedLevel))
+      ? savedLevel
       : GameLevel.EASY);
   }, []);
 

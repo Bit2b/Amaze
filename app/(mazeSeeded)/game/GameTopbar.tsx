@@ -6,6 +6,7 @@ import Solver from "@/components/topbar/Solver";
 import ResetGame from "@/components/topbar/ResetGame";
 import SeeGameTutorial from "@/components/topbar/SeeGameTutorial";
 import Stopwatch from "@/components/topbar/gameStopwatch";
+import ShowHideVisitedCell from "@/components/topbar/ShowHideVisited";
 
 const GameTopbar = () => {
     return (
@@ -18,6 +19,8 @@ const GameTopbar = () => {
                 <Solver />
                 <Separator orientation='vertical' />
                 <Downloader />
+                <Separator orientation='vertical' />
+                <ShowHideVisitedCell />
                 <Separator orientation='vertical' />
                 <SeeGameTutorial />
                 <Separator orientation='vertical' />

@@ -1,10 +1,9 @@
-import { useShowEmptyCellStore } from "@/store/showEmptyCellStore";
 import { Eye, EyeClosed } from "lucide-react";
-import type { FC } from "react";
 import { IconButton } from "./icon-button";
+import { useShowHideStore } from "@/store/showHideStore";
 
-const ShowHideEmptyCell: FC = () => {
-    const { showEmptyCell, toggleShowEmptyCell } = useShowEmptyCellStore();
+const ShowHideEmptyCell: React.FC = () => {
+    const { showEmptyCell, toggleShowEmptyCell } = useShowHideStore();
 
     return (
         <IconButton

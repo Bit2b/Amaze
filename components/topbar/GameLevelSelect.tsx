@@ -13,13 +13,15 @@ import { GameLevel } from "@/types";
 import { findSourceAndDestination } from "@/utils/gameUtils";
 import { useDimensionsStore } from "@/store/dimensionsStore";
 import { useResultStore } from "@/store/resultStore";
+import { useGameStore } from "@/store/gameStore";
 
 const GAME_LEVEL_STORAGE_KEY = 'selectedGameLevel';
+const GameLevelOptions = Object.values(GameLevel);
 
 export default function GameLevelSelect() {
-  const GameLevelOptions = Object.values(GameLevel);
   const { setSourceAndDestination, setCurrentPosition } = usePositionStore();
   const { height, width } = useDimensionsStore();
+  const { setGameStatus } = useGameStore();
   const maze = useResultStore((state) => state.mazeResult.maze);
 
   const [currentGameLevel, setCurrentGameLevel] = useState<GameLevel>(GameLevel.EASY);
@@ -39,6 +41,7 @@ export default function GameLevelSelect() {
     const { source, destination } = findSourceAndDestination(height, width, value, maze);
     setSourceAndDestination(source, destination);
     setCurrentPosition(source);
+    setGameStatus('Ready')
   };
 
   return (

@@ -6,13 +6,13 @@ import {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-} from "./ui/dialog";
+} from "../../../components/ui/dialog";
 import {
   RefreshCw, Waypoints, Undo2,
   GraduationCap, Map, Trophy
 } from "lucide-react";
 import { useTutorialStore } from "@/store/tutorialStore";
-import { Separator } from "./ui/separator";
+import { Separator } from "../../../components/ui/separator";
 
 const Key = ({ children }: { children: React.ReactNode }) => (
   <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-secondary text-sm font-medium shadow-sm sm:h-10 sm:w-10">

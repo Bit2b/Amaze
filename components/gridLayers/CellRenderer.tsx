@@ -1,5 +1,5 @@
 import { useDimensionsStore } from "@/store/dimensionsStore";
-import { useShowEmptyCellStore } from "@/store/showEmptyCellStore";
+import { useShowHideStore } from "@/store/showHideStore";
 import React, { memo } from "react";
 
 type CellProps = {
@@ -8,7 +8,7 @@ type CellProps = {
 
 const CellRenderer: React.FC<CellProps> = memo(({ value }) => {
   const { cellSize } = useDimensionsStore();
-  const showEmptyGrid = useShowEmptyCellStore((state) => state.showEmptyCell);
+  const showEmptyGrid = useShowHideStore((state) => state.showEmptyCell);
 
 
   const borders = [
